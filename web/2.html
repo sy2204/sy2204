@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <link href="leaflet/leaflet.css" rel="stylesheet">
+    <link href="bg-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="supermap-iclient-leaflet-dist/iclient-leaflet.js"></script>
+
+    <!-- 引入 jQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+
+    <!-- 引入 Bootstrap 和 twbsPagination 插件 -->
+    <script src="bg-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.twbsPagination.min.js"></script>
+
+    <!-- 开启响应式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        /* 地图区域 */
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #e0e0e0; /* 添加一个背景色以确认容器是否正确显示 */
+        }
+
+        /* 查询表单 */
+        #form {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #fff; /* 白色背景 */
+            border: 2px solid #4CAF50; /* 绿色边框 */
+            padding: 10px;
+            z-index: 1000;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 查询按钮 */
+        #queryButton, #clearButton {
+            background-color: #4CAF50; /* 绿色背景 */
+            color: white; /* 白色文字 */
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #queryButton:hover, #clearButton:hover {
+            background-color: #45a049;
+        }
+
+        /* 数据表格容器 */
+        .attribute-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: #fff;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 表格样式 */
+        .attribute-container .table {
+            width: 100%;
+            table-layout: auto;
+            font-size: 12px;
+        }
+
+        /* 分页样式 */
+        #pagination-demo {
+            float: right;
+            margin: 10px 20px;
+            padding-bottom: 5px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            #form {
+                width: 90%;
+                right: 5%;
+            }
+        }
+
+        /* 隐藏 zoom 控件 */
+        .leaflet-control-zoom {
+            display: none;
+        }
+
+        /* 信息框样式 */
+        #infoBox {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px;
+            z-index: 1000;
+            border: 2px solid #4CAF50; /* 绿色边框 */
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        #saveButton, #cancelButton {
+            background-color: #4CAF50; /* 绿色背景 */
+            color: white; /* 白色文字 */
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #saveButton:hover, #cancelButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 地图区域 -->
+<div id="map"></div>
+
+<!-- 查询表单 -->
+<div id="form">
+    <label for="queryInput">查询条件:</label>
+    <input type="text" id="queryInput" name="query">
+    <button type="button" id="queryButton">查询</button>
+    <button type="button" id="clearButton">清除查询</button> <!-- 添加的清除按钮 -->
+</div>
+
+<!-- 数据表格容器 -->
+<div class="attribute-container">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="header"></tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+    <ul id="pagination-demo" class="pagination-sm"></ul>
+</div>
+
+<!-- 在原有 HTML 中，增加一个信息框用于显示要素信息 -->
+<div id="infoBox" style="display: none; position: absolute; top: 10px; right: 10px; background: white; padding: 10px; z-index: 1000; border: 1px solid #ccc;">
+    <h4>编辑要素属性</h4>
+    <form id="editForm">
+        <div id="attributes"></div>
+        <button type="button" id="saveButton">保存</button>
+        <button type="button" id="cancelButton">取消</button>
+    </form>
+</div>
+
+<script>
+    // 初始化地图
+    var map = L.map('map', {
+        crs: L.CRS.EPSG4326,
+        center: [30.537, 114.355],
+        maxZoom: 18,
+        zoom: 12
+    });
+
+    console.log("Map initialized:", map); // 检查是否成功初始化地图
+
+    // 添加天地图图层
+    new L.supermap.TiandituTileLayer({
+        layerType: "vec",
+        key: 'ea8b21866619d49ffd3e92c669106d06'
+    }).addTo(map);
+
+    // 添加 SuperMap 图层
+    var urlwhu = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%40%E6%AD%A6%E5%A4%A7%E5%9C%B0%E5%9B%BE";
+    new L.supermap.TiledMapLayer(urlwhu).addTo(map);
+
+    var shopLayer;
+    var pageSize = 10; // 每页显示10条数据
+    var totalCount;
+
+    // 查询所有数据
+    function queryAllData() {
+        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var fParam = new L.supermap.GetFeaturesBySQLParameters({
+            datasetNames: ["superwhu:resultDataset"],
+            toIndex: -1,
+            queryParameter: {
+                name: "resultDataset@superwhu",
+                attributeFilter: "1=1",
+                maxFeatures: -1 // 查询所有数据
+            }
+        });
+
+        new L.supermap.FeatureService(dataurl).getFeaturesBySQL(fParam, function (serviceResult) {
+            var features = serviceResult.result.features.features;
+            //console.log("Total features retrieved:", features.length); // 输出总数据量
+            totalCount = features.length;
+            var totalPages = Math.ceil(totalCount / pageSize);
+
+            // 销毁现有的分页实例，避免多次初始化造成冲突
+            $('#pagination-demo').twbsPagination('destroy');
+
+            // 初始化分页
+            $('#pagination-demo').twbsPagination({
+                totalPages: totalPages,
+                /*visiblePages: 10,*/
+                onPageClick: function (event, page) {
+                    displayData(features.slice((page - 1) * pageSize, page * pageSize));
+                }
+            });
+
+            // 显示第一页的数据
+            displayData(features.slice(0, pageSize));
+
+            // 创建或更新图层
+            createOrUpdateShopLayer(features);
+        });
+    }
+
+    // 根据查询条件进行查询
+    function queryByID(input) {
+        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var fParam = new L.supermap.GetFeaturesBySQLParameters({
+            datasetNames: ["superwhu:resultDataset"],
+            queryParameter: {
+                name: "resultDataset@superwhu",
+                attributeFilter: "name like '%" + input + "%'"
+            }
+        });
+
+        new L.supermap.FeatureService(dataurl).getFeaturesBySQL(fParam, function (serviceResult) {
+            var features = serviceResult.result.features.features;
+            if (features.length > 0) {
+                totalCount = features.length;
+                var totalPages = Math.ceil(totalCount / pageSize);
+                $('#pagination-demo').twbsPagination('destroy');
+                $('#pagination-demo').twbsPagination({
+                    totalPages: totalPages,
+                    /*visiblePages: 7,*/
+                    onPageClick: function (event, page) {
+                        displayData(features.slice((page - 1) * pageSize, page * pageSize));
+                    }
+                });
+                displayData(features.slice(0, pageSize));
+                createOrUpdateShopLayer(features);
+            } else {
+                alert('未找到符合条件的数据。');
+            }
+        });
+    }
+
+    function displayData(features) {
+        //console.log("Displaying data for current page:", features); // 调试输出
+
+        var header = document.querySelector('.header');
+        var tbody = document.querySelector('.tbody');
+        header.innerHTML = '';  // 清空之前的表头
+        tbody.innerHTML = '';  // 清空之前的表体
+
+        if (features.length > 0) {
+            // 过滤掉 "介绍" 列
+            var keys = Object.keys(features[0].properties).filter(function(key) {
+                return key !== '介绍';
+            });
+
+            // 创建表头
+            keys.forEach(function(key) {
+                var th = document.createElement('th');
+                th.textContent = key;
+                header.appendChild(th);
+            });
+
+            // 创建表体
+            features.forEach(function(feature) {
+                var tr = document.createElement('tr');
+                var smid = feature.properties.SMID;  // 假设 smid 在 properties 中，使用正确的字段
+                tr.setAttribute('data-smid', smid);  // 设置每一行的 data-smid 属性
+                keys.forEach(function(key) {
+                    var td = document.createElement('td');
+                    td.textContent = feature.properties[key];
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+
+            // 添加点击高亮效果
+            tbody.querySelectorAll('tr').forEach(function(row) {
+                row.addEventListener('click', function() {
+                    // 移除其他行的 outline
+                    tbody.querySelectorAll('tr').forEach(function(r) {
+                        r.style.outline = '';  // 移除高亮效果
+                    });
+                    // 设置当前点击行的 outline 高亮效果
+                    row.style.outline = '2px solid yellow';  // 使用黄色边框高亮当前行
+                });
+            });
+        }
+    }
+
+
+
+    // 定义全局变量，保存当前编辑的要素
+    var currentFeature = null;
+
+    // 修改 createOrUpdateShopLayer 函数，添加显示编辑信息框功能
+    function createOrUpdateShopLayer(features) {
+        if (shopLayer) {
+            map.removeLayer(shopLayer);
+        }
+        shopLayer = L.geoJSON(features, {
+            onEachFeature: function (feature, layer) {
+                layer.on({
+                    click: function () {
+                        var smid = feature.properties.SMID;
+                        console.log('Clicked feature SMID:', smid);
+
+                        // 保存当前点击的要素
+                        currentFeature = feature;
+
+                        // 显示右上角的编辑框
+                        showEditForm(feature);
+
+                        // 找到对应表格中的行并高亮显示
+                        var page = Math.floor(features.findIndex(f => f.properties.SMID === smid) / pageSize) + 1;
+                        $('#pagination-demo').twbsPagination('show', page);
+
+                        setTimeout(function () {
+                            var tr = document.querySelector('.tbody').querySelector('tr[data-smid="' + smid + '"]');
+                            if (tr) {
+                                tr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                tr.style.outline = '2px solid yellow';
+                            }
+                        }, 200);
+                    }
+                });
+            }
+        }).addTo(map);
+    }
+
+    // 显示编辑表单并填充要素属性
+    function showEditForm(feature) {
+        var attributesDiv = document.getElementById('attributes');
+        attributesDiv.innerHTML = '';  // 清空之前的内容
+
+        // 定义你想要显示和编辑的属性列表
+        var editableAttributes = ['NAME', '学部', '是否开放','开放时间'];  // 只显示这些属性
+
+        // 遍历要素的属性并创建输入框，只显示特定的属性
+        for (var key in feature.properties) {
+            if (feature.properties.hasOwnProperty(key) && editableAttributes.includes(key)) {
+                var value = feature.properties[key];
+                var label = document.createElement('label');
+                label.textContent = key + ": ";
+                var input = document.createElement('input');
+                input.type = 'text';
+                input.name = key;
+                input.value = value;
+                attributesDiv.appendChild(label);
+                attributesDiv.appendChild(input);
+                attributesDiv.appendChild(document.createElement('br'));
+            }
+        }
+
+        // 显示信息框
+        document.getElementById('infoBox').style.display = 'block';
+    }
+
+    // 绑定保存按钮事件
+    document.getElementById('saveButton').addEventListener('click', function () {
+
+        var formElements = document.getElementById('editForm').elements;
+        var updatedProperties = {};
+
+        // 获取表单中的更新数据
+        for (var i = 0; i < formElements.length; i++) {
+            var element = formElements[i];
+            if (element.tagName === 'INPUT' && element.name) {
+                updatedProperties[element.name] = element.value;
+            }
+        }
+
+        // 更新当前要素的属性
+        for (var key in updatedProperties) {
+            if (updatedProperties.hasOwnProperty(key)) {
+                currentFeature.properties[key] = updatedProperties[key];
+            }
+        }
+        //console.log(currentFeature);
+        // 提交修改到服务器
+        //console.log('保存按钮被点击');
+        updateFeature(currentFeature);
+        //console.log('updateFeature 函数已调用');  // 检查函数是否被调用
+
+        // 关闭信息框
+        document.getElementById('infoBox').style.display = 'none';
+    });
+
+    // 绑定取消按钮事件
+    document.getElementById('cancelButton').addEventListener('click', function () {
+        document.getElementById('infoBox').style.display = 'none';
+    });
+
+    // 更新要素到 SuperMap iServer 数据服务
+    function updateFeature(feature) {
+        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+
+        // 打印 feature，确保数据结构正确
+        //console.log('准备更新的要素:', feature);
+
+        var fParam = new L.supermap.EditFeaturesParameters({
+            dataSourceName: "superwhu",  // 数据源名称
+            dataSetName: "resultDataset",  // 数据集名称
+            features: [feature],
+            editType: "update"  // 选择更新操作
+        });
+
+        // 打印 fParam，确保参数格式正确
+        //console.log('EditFeaturesParameters 参数:', fParam);
+
+        var featureService = new L.supermap.FeatureService(dataurl);
+        //console.log('FeatureService 实例:', featureService);  // 检查 FeatureService 是否正确创建
+        featureService.editFeatures(fParam, function (serviceResult){
+            //console.log(serviceResult);  // 检查返回的结果
+            if (serviceResult.result.succeed) {
+                alert("要素更新成功！");
+                queryAllData();  // 重新加载数据
+            } else {
+                alert("要素更新失败！");
+            }
+        });
+    }
+
+
+    // 绑定查询按钮事件
+    document.getElementById('queryButton').addEventListener('click', function() {
+        var queryInput = document.getElementById('queryInput').value.trim();
+        if(queryInput) {
+            queryByID(queryInput);
+        } else {
+            alert('请输入查询条件。');
+        }
+    });
+
+    // 绑定清除按钮事件
+    document.getElementById('clearButton').addEventListener('click', function() {
+        document.querySelector('.tbody').innerHTML = '';
+        $('#pagination-demo').twbsPagination('destroy');
+        if (shopLayer) {
+            map.removeLayer(shopLayer);
+            shopLayer = null;
+        }
+        document.getElementById('queryInput').value = '';
+        queryAllData();
+    });
+
+    // 页面加载时默认显示所有数据
+    queryAllData();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+/* 3D按钮 */
+/* .btn3D{
+	position: absolute;
+	left: 50%;
+	top: 0;
+}
+.switch {
+	--container-width: 5rem;
+	font-size: 17px;
+	position: relative;
+	display: inline-block;
+	width: var(--container-width);
+	height: 1.5rem;
+	background-color: white;
+	overflow: hidden;
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 30px, 50% 30px, 50% 60px, 25% 60px, 25% 30px, 0 30px);
+	border-radius: 0 0 15px 15px;
+}
+
+.switch .checkbox {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	--width: 0.25rem;
+	--offset: 0.3rem;
+	--transition-duration: 0.4s;
+
+	position: absolute;
+	cursor: pointer;
+	inset: 0;
+	background-color: #ccc;
+	box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
+	transition: var(--transition-duration);
+	transition-property: background-color, box-shadow;
+	border-radius: 0 0 15px 15px ;
+}
+
+.slider::before {
+	position: absolute;
+	content: "";
+	height: 1rem;
+	width: var(--width);
+	border-radius: 0.5rem;
+	left: 0.5rem;
+	bottom: var(--offset);
+	background-color: white;
+	transition: transform var(--transition-duration);
+}
+
+.checkbox:checked+.slider {
+	background-color: #171717;
+	box-shadow: inset 1px 2.5px 5px transparent;
+}
+
+.checkbox:checked+.slider::before {
+	transform: translateX(calc(var(--container-width) - 0.5rem * 2 - var(--width))) rotate(1turn);
+}
+
+#word3D{
+	color: whitesmoke;
+} */
+
+
+.btn3D {
+	--main-focus: #2d8cf0;
+	--font-color: #dedede;
+	--bg-color-sub: #222;
+	--bg-color: #323232;
+	--main-color: #dedede;
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 150px;
+	height: 30px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	/* border: 2px solid var(--main-color); */
+	background-color: var(--bg-color);
+	border-radius: 0 0 35px 35px / 20px 20px 20px 20px;
+	text-decoration: none;
+	/* overflow: hidden; */
+	/* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 30px, 50% 30px, 50% 60px, 25% 60px, 25% 30px, 0 30px); */
+}
+
+.btn3D,
+.btn3D_icon,
+.btn3D_text {
+	transition: all 0.3s;
+}
+
+.btn3D .btn3D_text {
+	transform: translateX(21px);
+	color: var(--font-color);
+	font-weight: 600;
+	font-size: 12px;
+	margin-left: -10px;
+}
+
+.btn3D .btn3D_icon {
+	position: absolute;
+	transform: translateX(109px);
+	height: 100%;
+	width: 39px;
+	background-color: var(--bg-color-sub);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 0 0 30px 35px / 20px 20px 20px 20px;
+}
+
+.btn3D_icon img {
+	width: 25px;
+}
+
+.btn3D:hover {
+	background: var(--bg-color);
+}
+
+.btn3D:hover .btn3D_text {
+	color: transparent;
+}
+
+.btn3D:hover .btn3D_icon {
+	width: 148px;
+	transform: translateX(0);
+}
+
+.btn3D:active {
+	transform: translate(-60px, 3px);
+	box-shadow: 0px 0px var(--main-color);
+}

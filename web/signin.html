@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理端登录/注册</title>
+    <link rel="stylesheet" href="CSS/signin.css">
+    <link rel="stylesheet" href="CSS/btn3D.css">
+    
+</head>
+<body>
+<!-- 返回 -->
+<a href="index.html" type="button" class="btn3D">
+    <span class="btn3D_text">返回客户端</span>
+    <span class="btn3D_icon">
+        <img src="/image/back.png" alt="">
+    </span>
+</a>
+
+<!-- 登录管理端 -->
+<div id="sign">
+    <div class="box">
+        <div class="inner-box">
+            <!-- 表单 -->
+            <div class="forms-wrap">
+                <!-- sign in -->
+                <form autocomplete="off" class="sign-in-form">
+                    <div class="logo">
+                        <img src="/image/学校.png" alt="logo">
+                        <h4>智行珞珈管理端</h4>
+                    </div>
+                    <div class="heading">
+                        <h2>欢迎回来</h2>
+                        <h6>没有账号？</h6>
+                        <a href="#" class="toggle">注册</a>
+                    </div>
+                    <!-- 表单 -->
+                    <div class="actual-form" id="actual-form">
+                        <div class="input-wrap">
+                            <input id="name" type="text" minlength="4" autocomplete="off" required class="input-field">
+                            <label for="name">Account</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input id="password" type="password" autocomplete="off" required class="input-field">
+                            <label for="pass">Password</label>
+                        </div>
+                        <input type="submit" value="Sign In" class="sign-btn">
+                        <p class="">忘记密码？
+                            <a href="#">获取帮助</a>
+                        </p>
+                    </div>
+                </form>
+                <!-- sign up -->
+                <form autocomplete="off" class="sign-up-form">
+                    <div class="logo">
+                        <img src="/image/学校.png" alt="logo">
+                        <h4>智行珞珈管理端</h4>
+                    </div>
+                    <div class="heading">
+                        <h4>暂未开放注册，请联系我们获得账号</h4>
+                        <h6>已有账号？</h6>
+                        <a href="#" class="toggle">登录</a>
+                    </div>
+                    <!-- 表单 -->
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input id="name-2" type="text" minlength="4" autocomplete="off" required class="input-field">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input id="email" type="email" autocomplete="off" required class="input-field">
+                            <label for="emali">E-mail</label>
+                        </div>
+                        <div class="input-wrap">
+                            <input id="password-2" type="password" autocomplete="off" required class="input-field">
+                            <label for="pass">password</label>
+                        </div>
+                        <input type="submit" value="Sign Up" class="sign-btn">
+                        <p class="">注册前，我已阅读并同意
+                            <a href="#">服务条款</a>和
+                            <a href="#">隐私协议</a>
+                        </p>
+                    </div>
+                </form>
+                </form>
+            </div>
+
+            <!-- 轮播 -->
+            <div class="carousel">
+                <div class="images-wrapper">
+                    <img src="赏樱路线/牌坊1.jpg" alt="1" class="images-carousel carousel-1 carousel-show">
+                    <img src="赏樱路线/912操场.jpg" alt="2" class="images-carousel carousel-2">
+                    <img src="赏樱路线/凌波门1.jpg" alt="3" class="images-carousel carousel-3">
+                </div>
+                <div class="text-slider">
+                    <div class="text-wrap">
+                        <div class="text-group">
+                            <h2>欢迎使用智行珞珈地图管理端</h2>
+                            <h2>亲爱的管理员，您好！</h2>
+                            <h2>请登录或注册</h2>
+                        </div>
+                    </div>
+                    <div class="bullets">
+                        <span class="bullet-active" data-value="1"></span>
+                        <span data-value="2"></span>
+                        <span data-value="3"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/signin.js"></script>
+</html>
+

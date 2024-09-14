@@ -1,0 +1,64 @@
+/* 表单的背景样式 */
+.popup-form .form-container {
+    background-color: #ffffff;
+    border: 1px solid #28a745;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* 标题样式 */
+.popup-form .form-header {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #28a745;
+    text-align: center;
+}
+
+/* 2*2表格布局 */
+.popup-form .input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.popup-form .input-group label {
+    flex-basis: 45%;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #28a745;
+}
+
+.popup-form .input-group input {
+    flex-basis: 45%;
+    padding: 5px;
+    border: 1px solid #28a745;
+    border-radius: 5px;
+}
+
+/* 按钮样式 */
+.popup-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-form .submit-btn, .clear-btn {
+    padding: 8px 15px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex-basis: 45%;
+}
+
+.popup-form .clear-btn {
+    background-color: #dc3545;
+}
+
+.popup-form .submit-btn:hover, .clear-btn:hover {
+    opacity: 0.9;
+}

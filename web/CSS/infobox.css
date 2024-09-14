@@ -1,0 +1,46 @@
+#infoBox {
+    position: absolute;
+    bottom: 20px; /* 调整底部距离 */
+    right: 20px;  /* 调整右侧距离 */
+    z-index: 1000; /* 确保 infoBox 在地图的上层 */
+    background-color: rgba(255, 255, 255, 0.9); /* 设置背景颜色和透明度 */
+    border: 1px solid #ccc; /* 边框 */
+    padding: 15px; /* 内边距 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+    border-radius: 8px; /* 圆角 */
+    max-width: 300px; /* 最大宽度 */
+}
+
+#infoBox h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+#infoBox ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+#infoBox li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+#infoBox button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#infoBox button:hover {
+    background-color: #45a049;
+}

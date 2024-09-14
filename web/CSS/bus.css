@@ -1,0 +1,42 @@
+#busRouteInfoBox {
+    position: absolute;
+    bottom: 100px !important;
+    right: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    color: #333;
+    z-index: 1000;
+}
+
+#busRouteInfoBox label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#busRouteInfoBox select {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#busRouteInfoBox button {
+    width: 100%;
+    padding: 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#busRouteInfoBox button:hover {
+    background-color: #45a049;
+}

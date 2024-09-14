@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>ECharts柱状图示例</title>
+    <!-- 引入ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <style>
+        #title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.4); /* 半透明背景 */
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-family: 'sans-serif'; /* ECharts 默认字体 */
+        }
+    </style>
+</head>
+<body>
+
+<!-- 用于显示柱状图的容器 -->
+<div id="main" style="width: 600px; height: 300px;"></div>
+<!-- 浮动标题 -->
+<div id="title">类别统计柱状图</div>
+<!-- 脚本部分 -->
+<script>
+    // 初始化ECharts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 绘制柱状图的函数
+    function drawBarChart(data) {
+        // 提取labels和counts
+        const labels = data.map(item => item.FLMC_text);
+        const counts = data.map(item => item.FLMC_count);
+
+        // 指定图表的配置项和数据
+        var option = {
+            /*title: {
+                text: '类别统计柱状图',
+                left: 'center',
+                textStyle: {
+                    fontSize: 24
+                }
+            },*/
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                    type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: labels,
+                axisLabel: {
+                    interval: 0, // 强制显示所有标签
+                    rotate: 45,  // 旋转45度，防止标签重叠
+                    textStyle: {
+                        fontSize: 12
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+                minInterval: 1,  // 设置Y轴最小间隔为1
+                axisLabel: {
+                    textStyle: {
+                        fontSize: 12
+                    }
+                }
+            },
+            series: [{
+                name: '计数',
+                type: 'bar',
+                data: counts,
+                itemStyle: {
+                    color: '#4CAF50'  // 自定义柱状图颜色
+                },
+                barWidth: '60%'
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+    }
+
+    // 页面加载后，获取数据并绘制柱状图
+    window.onload = function() {
+        fetch('/query2')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络响应不正常');
+                }
+                return response.json();
+            })
+            .then(data => {
+                drawBarChart(data);
+            })
+            .catch(error => {
+                console.error('错误:', error);
+            });
+    };
+</script>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <link href="leaflet/leaflet.css" rel="stylesheet">
+    <link href="bg-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="js/heatmap.js"></script>
+    <script type="text/javascript" src="supermap-iclient-leaflet-dist/iclient-leaflet.js"></script>
+    <script type="text/javascript" src="leaflet/leaflet-heat.js"></script> <!-- 引入 heatmap 插件 -->
+    <!-- 引入 jQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- 引入 Bootstrap -->
+    <script src="bg-dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHU</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        /* 地图区域 */
+        #map {
+            width: 70%; /* 地图占据页面宽度的 70% */
+            height: 100%;
+            background: #e0e0e0;
+        }
+
+        /* 数据表格容器 */
+        .attribute-container {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30%; /* 表格占据页面宽度的 30% */
+            height: 100%;
+            background: #fff;
+            z-index: 1000;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 表格样式 */
+        .attribute-container .table {
+            width: 100%;
+            table-layout: auto;
+            font-size: 12px; /* 调整字体大小 */
+        }
+
+        /* 表格中的行 hover 时变成可点击状态 */
+        .tbody tr:hover {
+            cursor: pointer;
+        }
+
+        /* 按钮样式 */
+        #showAllBtn, #clearAllBtn, #showHeatmapBtn, #clearHeatmapBtn {
+            margin-bottom: 10px;
+            margin-left: 10px;
+        }
+
+        .button-container {
+            position: absolute;
+            bottom: 50px;
+            left: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 100px;
+            flex-wrap: wrap; /* 支持换行 */
+        }
+        /* 隐藏 zoom 控件 */
+        .leaflet-control-zoom {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 地图区域 -->
+<div id="map"></div>
+
+<!-- 按钮容器 -->
+<div class="button-container">
+    <button id="showAllBtn" class="btn btn-success">显示所有点</button>
+    <button id="clearAllBtn" class="btn btn-secondary">清除所有点</button>
+    <button id="showHeatmapBtn" class="btn btn-success">显示热力图</button>
+    <button id="clearHeatmapBtn" class="btn btn-secondary">清除热力图</button>
+</div>
+
+
+<!-- 数据表格容器 -->
+<div class="attribute-container">
+    <table class="table table-bordered">
+        <thead>
+        <tr class="header"></tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+    </table>
+</div>
+
+<script>
+    // 初始化地图
+    var map = L.map('map', {
+        crs: L.CRS.EPSG4326,
+        center: [30.537, 114.355], // 默认中心点坐标
+        maxZoom: 18,
+        zoom: 12
+    });
+
+    // 添加天地图图层
+    new L.supermap.TiandituTileLayer({
+        layerType: "vec",
+        key: 'ea8b21866619d49ffd3e92c669106d06'
+    }).addTo(map);
+
+    // 添加 SuperMap 图层
+    var urlwhu = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%40%E6%AD%A6%E5%A4%A7%E5%9C%B0%E5%9B%BE";
+    new L.supermap.TiledMapLayer(urlwhu).addTo(map);
+
+    var markers = []; // 用于保存地图上的标记
+    var features = []; // 用于保存从数据库获取的点数据
+
+    // 使用 fetch 获取后端的点数据
+    function fetchPoints() {
+        return fetch('/addpoint') // 将 'your-servlet-url' 替换为你的后端URL
+            .then(response => response.json())
+            .then(data => {
+                features = data; // 保存从数据库获取的点数据
+                displayData(features); // 显示在表格中
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }
+
+    // 清除地图上的所有标记
+    function clearMarkers() {
+        markers.forEach(function (marker) {
+            map.removeLayer(marker);
+        });
+        markers = [];
+    }
+
+    // 显示数据到表格中
+    function displayData(features) {
+        var header = document.querySelector('.header');
+        var tbody = document.querySelector('.tbody');
+        header.innerHTML = '';  // 清空之前的表头
+        tbody.innerHTML = '';  // 清空之前的表体
+
+        // 创建表头
+        var headers = ["反馈主题", "反馈内容"];
+        headers.forEach(function (key) {
+            var th = document.createElement('th');
+            th.textContent = key;
+            header.appendChild(th);
+        });
+
+        // 创建表体
+        features.forEach(function (feature) {
+            var tr = document.createElement('tr');
+            tr.innerHTML = `<td>${feature.name}</td><td>${feature.meaning}</td>`;
+
+            // 点击行时在地图上显示对应的点
+            tr.addEventListener('click', function () {
+                clearMarkers(); // 清除之前的标记
+
+                // 在地图上添加新的标记
+                var marker = L.marker([feature.lat, feature.lng]).addTo(map);
+                marker.bindPopup(`<b>${feature.name}</b><br>${feature.meaning}`).openPopup();
+                markers.push(marker); // 将标记保存到数组中
+
+                // 将地图移至对应的点
+                map.setView([feature.lat, feature.lng]);//   map.setView([feature.lat, feature.lng], 15);
+            });
+
+            tbody.appendChild(tr);
+        });
+    }
+
+    // 显示所有点的函数
+    function showAllPoints() {
+        clearMarkers(); // 清除所有现有标记
+        fetchPoints();
+
+        features.forEach(function (feature) {
+            // 在地图上添加所有点
+            var marker = L.marker([feature.lat, feature.lng]).addTo(map);
+            marker.bindPopup(`<b>${feature.name}</b><br>${feature.meaning}`);
+            markers.push(marker); // 将标记保存到数组中
+        });
+
+/*        // 将地图缩放到适合显示所有点的位置
+        var bounds = L.latLngBounds(features.map(f => [f.lat, f.lng]));
+        map.fitBounds(bounds);*/
+    }
+
+    // 绑定显示所有点按钮的点击事件
+    document.getElementById('showAllBtn').addEventListener('click', showAllPoints);
+
+    // 清除所有点的函数
+    function clearAllPoints() {
+        clearMarkers(); // 清除所有现有标记
+    }
+
+    // 绑定清除所有点按钮的点击事件
+    document.getElementById('clearAllBtn').addEventListener('click', clearAllPoints);
+
+    // 绑定按钮点击事件来加载热力图
+    document.getElementById('showHeatmapBtn').addEventListener('click',  function () {
+        lm.heatMap.onloadheatmap(); fetchPoints(); // 加载并显示热力图
+    });
+    // 绑定按钮点击事件来清除热力图
+    document.getElementById('clearHeatmapBtn').addEventListener('click', function () {
+        lm.heatMap.clearheatmap(); // 清除热力图
+    });
+
+    // 页面加载时调用 fetchPoints() 函数，获取并显示数据库中的数据
+    fetchPoints();
+</script>
+
+</body>
+</html>

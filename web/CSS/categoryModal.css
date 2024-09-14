@@ -1,0 +1,166 @@
+.modal {
+    display: none;
+    flex-direction: column;
+    gap: 0.5em;
+    z-index: 1000; /* 设置较高的层级确保在最前 */
+    right: 40px; /* 距离右侧20px */
+    bottom: 100px; /* 距离底部20px */
+    position: fixed; /* 确保 modal 在屏幕上固定 */
+}
+
+.up {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.down {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.card1 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 90px 5px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.library {
+    height: 40px;
+    width: 40px;
+    margin-top: 1.5em;
+    margin-left: 1.2em;
+    fill: #cc39a4;
+}
+.card1 p{
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    top: -8px;
+    left: 8px;
+}
+
+.card2 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 90px 5px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.canteen {
+    height: 40px;
+    width: 40px;
+    margin-top: 1.5em;
+    margin-left: -0.9em;
+}
+.card2 p{
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    top: -8px;
+    right: 8px;
+}
+.card3 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 5px 90px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.classroom {
+    margin-top: 0.6em;
+    margin-left: 1.2em;
+    height: 40px;
+    width: 40px;
+}
+.card3 p{
+    font-weight: 600;
+    font-size: 16px;
+    position: relative;
+    top: -8px;
+    left: 8px;
+}
+
+.card4 {
+    width: 90px;
+    height: 90px;
+    outline: none;
+    border: none;
+    background: white;
+    border-radius: 5px 5px 90px 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: 0.2s ease-in-out;
+    z-index: 1000;
+}
+.card4 img{
+    height: 50px;
+    width: 50px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.card1:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #92cdfdae;
+    box-shadow: 1px 1px 0px #e0f4fb, 2px 2px 0px #bce1fbc8, 3px 3px 0px #bce1fbc8,
+        4px 4px 0px #bce1fbc8, 5px 5px 0px #bce1fbc8;
+}
+
+
+.card3:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #fee4b4;
+    box-shadow: 1px 1px 0px #ffeed0, 2px 2px 0px #f2dbb3, 3px 3px 0px #f2dbb3,
+        4px 4px 0px #f2dbb3, 5px 5px 0px #f2dbb3;
+}
+
+
+.card2:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #bebebe;
+    box-shadow: 1px 1px 0px rgb(210, 210, 210), 2px 2px 0px #999, 3px 3px 0px #999,
+        4px 4px 0px #999, 5px 5px 0px #999;
+}
+ruh
+
+.card4:hover {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #f44336;
+    box-shadow: 1px 1px 0px #e2bdbd, 2px 2px 0px #e09c9c, 3px 3px 0px #e09c9c,
+        4px 4px 0px #e09c9c, 5px 5px 0px #e09c9c;
+}
+
+
+.card1,
+.card2,
+.card3,
+.card4 {
+    box-shadow: 1px 1px 0px rgb(179, 175, 175), 2px 2px 0px rgb(179, 175, 175),
+        3px 3px 0px rgb(179, 175, 175), 4px 4px 0px rgb(179, 175, 175),
+        5px 5px 0px rgb(179, 175, 175);
+}

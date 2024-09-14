@@ -1,0 +1,175 @@
+.search{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+}
+/* 初始小框 */
+.input{
+    /* 输入内容的边距 */
+    margin-right: 7px;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    /* 樱花样式 */
+    border: 2px solid #1a6840;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font: 400 20px Comic Sans MS;
+    /* 避免了收起之后看得见输入的文字的问题 */
+    color: #1a684000;
+    outline: none;
+    transition: .5s;
+}
+/* 点击生效 */
+#checkbox,
+label[for="checkbox"] {
+    position: absolute;
+    /* 应用绝对定位 */
+    top: 0;
+    /* 定位到相同的顶部位置 */
+    right: 4px;
+    /* 定位到相同的左侧位置 */
+    margin: 0;
+    /* 移除外边距 */
+    padding: 0;
+    /* 移除内边距 */
+    z-index: 3;
+}
+/* 隐藏复选框 */
+#checkbox{
+    display: none;
+}
+/* 未选中时的label样式 */
+[for=checkbox]{
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    margin: 4px;
+    transition: .4s;
+    /* 放的是搜索图标，表示点开搜索 */
+    background-image: url('/image/search.png');
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    background-position: 4px;
+    cursor: pointer;
+}
+[for=checkbox]:hover{
+    background-image: url('/image/search\ \(2\).gif');
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+    background-position: 1px
+}
+/* 后来的小框 */
+/* 选中时的label样式 */
+#checkbox:checked~label{
+    width: 40px;
+    height: 40px;
+    border-radius: 10px; 
+    /* 小方框内的关闭图标，表示收起搜索框 */
+    background-image: url('/image/静态关闭.png');
+    background-repeat: no-repeat;
+    background-size: 28px 28px;
+    background-position: center;
+    /* background-size: cover; */
+    cursor: pointer;
+    /* 樱花样式 */
+    border: 2px solid #1a6840;
+    margin: 0px -3px;
+    right: 10px;
+}
+#checkbox:checked~label:hover{
+    background-image: url('/image/Close.gif');
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center;
+}
+/* 变化 */
+/* 真正的输入框 */
+#checkbox:checked~.input{
+    width: 200px;
+    border-radius: 10px;
+    margin-right: 55px;
+    margin-top: 1px;
+    /* 樱花样式 */
+    background-color: #d6e9ca55; 
+    color: black;
+    padding-left: 10px;
+}
+
+.fonts {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    /* 樱花样式 */
+    color: #1a6840;
+    letter-spacing: 1px;
+    font: 400 16px Comic Sans Ms;
+    display: flex;
+}
+   /* 开始隐藏起来 */
+.fonts span {
+    transition: .3s;
+    opacity: 0;
+    /* 文字开始躲的位置 */
+    /* 我滴妈妈呀调好久才、、 */
+    transform: translateY(0px) translateX(-80px);
+}
+/* 文字出现 */
+#checkbox:checked~.fonts span {
+    transition: calc(var(--i)*0.1s) .3s;
+    /* y轴位移 */
+    transform: translateY(41px) translateX(-55px);
+    opacity: 1;
+}
+/* 清除按钮 */
+.clear {
+    position: absolute;
+    top: 40px;
+    right: 11px;
+    margin: 5px 0 0 0;
+}
+.clear button {
+    background-image: url('/image/静态删除.png');
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center;
+    cursor: pointer;
+    /* 樱花样式 */
+    border: 2px solid #1a6840;
+    margin: 1px -1.5px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.clear button:hover {
+    background-image: url('/image/Delete.gif');
+    background-repeat: no-repeat;
+    background-size: 30px 30px;
+    background-position: center;
+}
+
+/* search */
+.input.sakura {
+    border: 2px solid #655a9e;
+}
+
+#checkbox:checked~label.sakura {
+    border: 2px solid #655a9e;
+}
+
+#checkbox:checked~.input.sakura {
+    background-color: #ffc0cb55;
+}
+
+.fonts.sakura {
+    color: #655a9e;
+}
+
+.clear button.sakura {
+    border: 2px solid #655a9e;
+}

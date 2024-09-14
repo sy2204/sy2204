@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link href="leaflet/leaflet.css" rel="stylesheet">
+    <script type="text/javascript" src="leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="supermap-iclient-leaflet-dist/iclient-leaflet.js"></script>
+    <script src="js/query.js"></script>
+    <script src="js/searchByCategory.js"></script>
+    <script src="js/clear.js"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/path.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.min.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/sendSpotTypeToServer.js"></script>
+    <script src="leaflet/leaflet.polylineDecorator.js"></script>
+
+
+
+
+    <!-- 开启响应式 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智行珞珈地图系统</title>
+    <link rel="icon" href="/image/WHU.png" type="image/png">
+    <link rel="stylesheet" href="CSS/public.css">
+    <link rel="stylesheet" href="CSS/nav.css">
+    <link rel="stylesheet" href="CSS/search.css">
+    <link rel="stylesheet" href="CSS/btn.css">
+    <link rel="stylesheet" href="CSS/popup.css">
+    <link rel="stylesheet" href="CSS/infobox.css">
+    <link rel="stylesheet" href="CSS/categoryModal.css">
+    <link rel="stylesheet" href="CSS/inform.css">
+    <link rel="stylesheet" href="CSS/route.css">
+    <link rel="stylesheet" href="CSS/btn3D.css">
+    <link rel="stylesheet" href="CSS/signin.css">
+    <link rel="stylesheet" href="CSS/addpoint.css">
+    <link rel="stylesheet" href="CSS/bus.css">
+
+    <style>
+        body { margin: 0; overflow: hidden; background: #fff; width: 100%; height: 100%; position: absolute; top: 0 }
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute; /* 使元素从文档流中移除 */
+            top: 0;
+            left: 0;
+            z-index: 0; /* 将 z-index 设置为负值，确保元素在其他元素的下面 */
+        }
+
+        /* 隐藏 zoom 控件 */
+        .leaflet-control-zoom {
+            display: none;
+        }
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- 地图部分 -->
+    <div id="map"></div>
+    <div id="body-pd">
+        <!-- 樱花样式 -->
+        <div class="l-navbar green" id="navbar">
+            <nav class="nav" id="nav">
+                <div>
+                    <div class="nav_brand">
+                        <ion-icon name="menu-outline" class="nav_toggle" id="nav-toggle"></ion-icon>
+                        <a href="#" class="nav_logo">智行珞珈地图系统
+                        </a>
+                    </div>
+                    <ul class="nav__list green">
+                        <!-- 樱花样式 -->
+                        <li><a href="#" class="nav_link green" id="pathquery">
+                            <img src="/image/navigate.png" alt="">
+                            <span class="nav_name">地点导航</span>
+                        </a></li>
+                        <li><a href="#" class="nav_link green" id="pathanalyse">
+                            <img src="/image/pathanalysis.png" alt="">
+                            <span class="nav_name">路径分析</span>
+                        </a></li>
+                        <li><a href="#" class="nav_link green" id="startSearchBtn">
+                            <img src="/image/life.png" alt="">
+                            <span class="nav_name">最近服务设施查询</span>
+                        </a></li>
+                        <li class="line"><a href="#" class="nav_link green" id="route-btn" >
+                            <img src="/image/bus.png" alt="" id="route-image">
+                            <span class="nav_name" id="route-text">校园巴士路线</span>
+                        </a></li>
+                        <li>
+                            <a href="#" class="nav_link green" onclick="travel.queryTravelPoints(); return false;">
+                                <img src="/image/sakuramap.png" alt="">
+                                <span class="nav_name">景观</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav_link green" onclick="sm.search.searchByCategory('教学楼')">
+                                <img src="/image/school.png" alt="">
+                                <span class="nav_name">教学楼</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav_link green" onclick="sm.search.searchByCategory('食堂')">
+                                <img src="/image/food.png" alt="">
+                                <span class="nav_name">食堂</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav_link green" onclick="sm.search.searchByCategory('图书馆')">
+                                <img src="/image/library.png" alt="">
+                                <span class="nav_name">图书馆</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"  class="nav_link green" onclick="sm.search.searchByCategory('医院')">
+                                <img src="/image/hospital.png" alt="">
+                                <span class="nav_name">医院</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"  class="nav_link green" onclick="sm.search.searchByCategory('学生宿舍')">
+                                <img src="/image/dormitory.png" alt="">
+                                <span class="nav_name">学生宿舍</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#"  class="nav_link green" onclick="sm.search.searchByCategory('博物馆')">
+                                <img src="/image/research.png" alt="">
+                                <span class="nav_name">博物馆</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav_link green" onclick="sm.search.searchByCategory('学院办公楼')">
+                                <img src="/image/academy.png" alt="">
+                                <span class="nav_name">学院办公楼</span>
+                            </a>
+                        </li>
+                        <li class="line">
+                            <a class="nav_link green" href="#" onclick="sm.search.searchByCategory('文体娱乐设施')">
+                                <img src="/image/music_sports.png" alt="">
+                                <span class="nav_name">文体场馆</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav_link green" id="activateAddPointButton">
+                                <img src="/image/comment.png" alt="">
+                                <span class="nav_name">意见反馈</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="signin.html" class="nav_link green" id="administrator">
+                                <img src="/image/administrator.png" alt="">
+                                <span class="nav_name">管理员登录</span>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                </div>
+                
+
+            </nav>
+        </div>
+
+        <!-- 3D -->
+        <a href="5.html" type="button" class="btn3D">
+            <span class="btn3D_text">点击开启3D之旅</span>
+            <span class="btn3D_icon">
+                <img src="/image/arrow.png" alt="">
+            </span>
+        </a>
+
+        <!-- 搜索 -->
+        <div class="search">
+            <form action="/search" method="get" onsubmit="return searchFunction()">
+                <!-- 初始小方框 -->
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox" class="checkbox-label"></label>
+                <!-- 樱花样式 -->
+                <input type="text" class="input green" id="queryInput">
+                <!-- 樱花样式 -->
+                <div class="fonts green">
+                    <span style="--i:3">按</span>
+                    <span style="--i:4">下</span>
+                    <span style="--i:5">回</span>
+                    <span style="--i:6">车</span>
+                    <span style="--i:7">(</span>
+                    <span style="--i:8">E</span>
+                    <span style="--i:9">n</span>
+                    <span style="--i:10">t</span>
+                    <span style="--i:11">e</span>
+                    <span style="--i:12">r</span>
+                    <span style="--i:13">)</span>
+                    <span style="--i:14">以</span>
+                    <span style="--i:15">搜</span>
+                    <span style="--i:16">索</span>
+                </div>
+            </form>
+        </div>
+        <!-- 清除键 -->
+        <!-- 樱花样式 -->
+        <div class="clear green">
+            <button type="button" id="clearButton" onclick="clearForm()"></button>
+        </div>
+    </div>
+
+    
+    <div  class="container">
+        <!-- 按钮主题（圆形部分） -->
+        <div class="main-btn" id="btn">
+            <div class="sakura-btn"></div>
+        </div>
+        <div class="green-all">
+            <div class="student-L" ></div>
+            <div class="student-M"></div>
+            <div class="student-S"></div>
+            <div class="word-stu">学生</div>
+        </div>
+        <!-- 所有的花 -->
+        <div class="sakura-all">
+            <div class="ying L"></div>
+            <div class="ying M"></div>
+            <div class="ying S"></div>
+            <div class="word">游客</div>
+        </div>
+    </div>
+
+    <div id="infoBox" style="display: none;">
+        <h3>已选择的点</h3>
+        <ul id="infoBoxContent"></ul>
+        <button onclick="calculateRoute()">分析路径</button>
+    </div>
+    <!-- 最近路径 -->
+    <div class="modal" id="categoryModal">
+        <div class="up">
+            <button class="card1" id="libraryBtn">
+                <img src="/image/library.png" alt="" class="library">
+                <p>图书馆</p>
+            </button>
+            <button class="card2" id="canteenBtn">
+                <img src="/image/canteen.png" alt="" class="canteen">
+                <p>食堂</p>
+            </button>
+        </div>
+        <div class="down">
+            <button class="card3" id="classroomBtn">
+                <img src="/image/academy.png" alt="" class="classroom">
+                <p>教学楼</p>
+            </button>
+            <button class="card4 close">
+                <img src="/image/静态关闭.png" alt="">
+            </button>
+        </div>
+    </div>
+
+    <script>
+    /*// 检查浏览器是否支持Geolocation API
+    if (navigator.geolocation) {
+        // 获取用户的地理位置
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                // 成功获取地理位置时执行的回调函数
+                var lat = position.coords.latitude; // 获取纬度
+                var lon = position.coords.longitude; // 获取经度
+
+                // 在控制台打印出经纬度
+                console.log("Latitude: " + lat, "Longitude: " + lon);
+
+                // 在地图上添加用户位置的标记，并显示一个弹出框
+                L.marker([lat, lon]).addTo(map).bindPopup("You are here").openPopup();
+            },
+            function(error) {
+                // 如果获取地理位置失败，执行的回调函数
+                console.error("Error occurred. Error code: " + error.code);
+                // Error codes:
+                // 1: PERMISSION_DENIED - 用户拒绝了浏览器的定位请求
+                // 2: POSITION_UNAVAILABLE - 设备无法获取当前位置
+                // 3: TIMEOUT - 获取位置信息超时
+            },
+            {
+                // 配置选项
+                enableHighAccuracy: true,  // 启用高精度模式，尽可能使用GPS等高精度定位方式
+                timeout: 10000,            // 最大等待时间10秒
+                maximumAge: 0              // 不使用缓存，每次请求最新的位置信息
+            }
+        );
+    }*/
+
+
+    var map = L.map('map', {
+        crs: L.CRS.EPSG4326,
+        center: [30.537, 114.355],
+        maxZoom: 18,
+        zoom: 12
+    });
+
+    new L.supermap.TiandituTileLayer({
+        layerType: "vec",
+        key: 'ea8b21866619d49ffd3e92c669106d06'
+    }).addTo(map);
+
+    function searchFunction() {
+        var queryInput = document.getElementById('queryInput').value.trim();
+
+        if (queryInput === '') {  // 如果查询内容为空，显示提示信息并阻止继续操作
+            alert('请输入搜索内容');
+            return false;  // 阻止表单提交
+        }
+
+        // 执行查询功能
+        sm.query.onload({ field: { title: queryInput } });
+
+        // 保存查询内容到数据库
+        fetch('/query1', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'query=' + encodeURIComponent(queryInput)
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('提交查询时出错');
+            }
+            //loadQueryHistory();  // 查询后重新加载词云图
+        }).catch(error => {
+            console.error('提交查询时发生错误:', error);
+        });
+
+        return false;  // 阻止表单提交
+    }
+
+
+
+    function clearForm() {
+        lm.addpoint.clear()
+        map.closePopup();// 清除（关闭）弹出层
+        names = [];
+        sm.clear.clear(); // 调用清除函数
+        // 清除路径图层
+        if (pathLayer) {
+            map.removeLayer(pathLayer);
+            pathLayer = null; // 清除后将 pathLayer 设为 null
+        }
+        if (minpathLayer) {
+            minpathLayer.clearLayers();
+            map.removeLayer(minpathLayer);
+            minpathLayer = null; // 清除后将 pathLayer 设为 null
+        }
+
+        if (pathAnalysisLayer) {
+            map.removeLayer(pathAnalysisLayer);
+            pathAnalysisLayer = null; // 清除后将 pathLayer 设为 null
+        }
+
+        // 清除出发点标记
+        if (startPointMarker) {
+            map.removeLayer(startPointMarker);
+            startPointMarker = null; // 清除后将 startPointMarker 设为 null
+        }
+        if (DestinationPointMarker) {
+            map.removeLayer(DestinationPointMarker);
+            DestinationPointMarker = null; // 清除后将 startPointMarker 设为 null
+        }
+        // 清除路径分析标记
+        if (markers && markers.length > 0) {
+            markers.forEach(function(marker) {
+                map.removeLayer(marker);
+            });
+            markers = [];  // 清空标记数组
+        }
+
+        if (facilityStartPointMarker) {
+            map.removeLayer(facilityStartPointMarker); // 从地图中移除标记
+            facilityStartPointMarker = null; // 清除标记的引用
+        }
+
+        if (currentBusRouteLayer) {
+            map.removeLayer(currentBusRouteLayer);
+        }//巴士路线
+        removeBusInfoBox();
+        //赏樱
+        if (travelrouteLayer) {
+            map.removeLayer(travelrouteLayer);
+        }
+        if (travelpointLayer) {
+            map.removeLayer(travelpointLayer);
+        }
+        destination = null;
+        startPoint = null;
+        // 清除出发点坐标
+        facilityStartPoint = null;
+
+        isPathAnalysisMode = false;  // 退出路径分析模式，恢复默认行为
+
+        selectedPoints = [];  // 清空选点数组
+        // 清空搜索输入框内容
+        document.getElementById('queryInput').value = '';
+        // 清除信息框中的内容
+        document.getElementById('infoBoxContent').innerHTML = '';
+        // 隐藏信息框
+        document.getElementById('infoBox').style.display = 'none';
+    }
+
+
+    </script>
+    <script src="js/pathanalyse.js"></script>
+    <script src="js/minfacility.js"></script>
+    <script src="js/bus.js"></script>
+    <script src="js/travel.js"></script>
+    <script src="js/addpoint.js"></script>
+<!--    <script src="js/btn3D.js"></script>-->
+    <script src="js/signin.js"></script>
+
+</body>
+<script>
+    $("#nav a").on("click",function(){
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide1").css({ opacity: 1, left: +position.left,  width: width});
+    });
+    $("#nav a").on("mouseover",function(){
+        var position = $(this).parent().position();
+        var width = $(this).parent().width();
+        $("#nav .slide2").css({ opacity: 1,left: +position.left, width: width}).addClass("squeeze");
+    });
+    $("#nav a").on("mouseout",function(){
+        $("#nav .slide2").css({ opacity: 0}).removeClass("squeeze");
+    });
+    var currentWidth = $("#nav li:nth-of-type(3) a").parent("li").width();
+    var current = $("li:nth-of-type(3) a").position();
+    $("#nav .slide1").css({ left: +current.left,width:currentWidth});
+
+</script>
+<script src="js/script.js"></script>
+        <!-- ===== 引入icon ===== -->
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+        
+        <!-- ===== 引入js ===== -->
+        <script src="/js/nav.js"></script>
+</html>

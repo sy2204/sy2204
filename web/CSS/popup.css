@@ -1,0 +1,21 @@
+/* 隐藏弹出框的背景和边框 */
+.leaflet-popup-content-wrapper {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+/* 隐藏弹出框的箭头 */
+.leaflet-popup-tip-container {
+    display: none;
+}
+
+/* 自定义弹出框内容的样式 */
+.custom-popup {
+    /* 在这里添加你自己的样式 */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #000;
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智行珞珈管理端</title>
+    <link href="Build/bootstrap.min.css" rel="stylesheet">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="Build/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="CSS/admin.css">
+    <link rel="stylesheet" href="CSS/visual.less">
+    <link rel="stylesheet" href="CSS/visual.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/btn3D.css">
+
+</head>
+<body>
+
+    <div id="viewport">
+        <!-- 侧边栏 -->
+        <div id="sidebar">
+            <header>
+                <a href="#">智行珞珈地图管理系统</a>
+            </header>
+            <ul class="nav">
+                <li class="nav_link active">
+                    <a href="#" data-target="datamanage" >
+                        数据编辑
+                    </a>
+                </li>
+                <li class="nav_link">
+                    <a href="#" data-target="visual">
+                        管理可视化
+                    </a>
+                </li>
+                <li class="nav_link">
+                    <a href="#" data-target="comment">
+                        意见反馈
+                    </a>
+                </li>
+                <li class="nav_link">
+                    <a href="#" data-target="about">
+                        关于
+                    </a>
+                </li>
+                <li class="nav_link">
+                    <a href="#" data-target="contact">
+                        联系我们
+                    </a>
+                </li>
+                <li class="nav_link">
+                    <a href="index.html" >
+                        返回客户端
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 内容区域 -->
+        <div id="content">
+           <!-- <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-user"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">超级管理员whu30205</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>-->
+            <div class="container-fluid">
+                <div id="datamanage" class="page">
+                    <iframe id="webFrame" src="" style="width: 100%; height: 720px; border: none;"></iframe>
+                </div>
+                <div id="visual" class="page">
+                    <div id="typechart">
+                        <iframe id="flmc" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+                    </div>
+                    <div id="account">
+                        <div class="logo-wrapper">
+                            <div class="logo">
+                                <img src="/image/头像.png" alt="">
+                            </div>
+                        </div>
+                        <div class="account-card">
+                            <div class="account-info">
+                                <div class="who">昵称 | 超级管理员whu161610</div>
+                                <div class="where">所属学院 | 资源与环境科学学院</div>
+                                <div class="num">工号 | 302058819</div>
+                                <div class="days">
+                                    <span>您已来到武汉大学</span>
+                                    <span id="days-display">0</span>
+                                    <span>天</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="hotmap">
+                        <iframe id="heatmap" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+                    </div>
+                    <div id="wordcloud">
+                        <iframe id="cloud" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+                    </div>
+                </div>
+                <div id="comment" class="page">
+                    <iframe id="addpoint" src="" style="width: 100%; height: 730px; border: none;"></iframe>
+                </div>
+                <div id="about" class="page">
+                    <h1>关于内容</h1>
+                    <p>由于本系统开发时间较短，还存在一些潜在的问题，预计后续会逐步更新解决问题。</p>
+                </div>
+                <div id="contact" class="page">
+                    <h1>联系我们</h1>
+                    <p>联系方式待补充</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/adminNav.js"></script>
+    <script src="js/flexible.js"></script>
+    <script>
+        // 在页面加载时，自动设置 iframe 的 src 属性
+        window.onload = function() {
+            var timestamp = new Date().getTime();  // 获取当前时间戳
+            document.getElementById("webFrame").src = "http://localhost:8090/2.html?t=" + timestamp;
+            document.getElementById("heatmap").src = "http://localhost:8090/heatmap.html?t=" + timestamp;
+            document.getElementById("addpoint").src = "http://localhost:8090/3.html?t=" + timestamp;
+            document.getElementById("flmc").src = "http://localhost:8090/histogram.html?t=" + timestamp;
+            document.getElementById("cloud").src = "http://localhost:8090/cloud.html?t=" + timestamp;
+        };
+
+
+        // 设置起始日期（格式为 YYYY-MM-DD）
+        const startDate = new Date('2024-05-18');
+
+        function updateDays() {
+            const today = new Date();
+            // 计算两个日期之间的差异（以毫秒为单位）
+            const timeDiff = today - startDate;
+            // 将毫秒转换为天数
+            const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            // 更新 HTML 元素中的天数
+            document.getElementById('days-display').textContent = daysDiff;
+        }
+
+        // 初次加载页面时更新天数
+        updateDays();
+        // 每 24 小时更新一次天数
+        setInterval(updateDays, 1000 * 60 * 60 * 24);
+    </script>
+</body>
+</html>

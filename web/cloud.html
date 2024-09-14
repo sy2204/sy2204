@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>词云图</title>
+    <!-- 引入ECharts库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@latest/dist/echarts.min.js"></script>
+    <!-- 引入ECharts词云插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.0.0/dist/echarts-wordcloud.min.js"></script>
+    <style>
+        /* 使词云图容器占据屏幕的大部分 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        #container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.4); /* 半透明背景 */
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-family: 'sans-serif'; /* ECharts 默认字体 */
+        }
+        #wordCloud {
+            flex: 1;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="title">查询统计词云图</div>
+    <div id="wordCloud"></div>
+</div>
+
+<script>
+    var chart = echarts.init(document.getElementById('wordCloud'));
+
+    // 定义颜色数组
+    var colorPalette = [
+        '#FF0000', '#FF7F00', '#00FF00', '#0000FF', '#4B0082',
+        '#8B00FF', '#FF1493', '#00FFFF', '#FFD700', '#FF69B4',
+        '#1E90FF', '#32CD32', '#FF4500', '#FF6347', '#40E0D0',
+        '#FF8C00', '#FF00FF', '#00FA9A'
+    ];
+
+    // 初始化 sizeRange 变量
+    var minSize = 14;
+    var maxSize = 60;
+
+    // 存储当前数据
+    var currentData = [];
+
+    // 加载数据库中的历史记录并生成词云图
+    function loadQueryHistory() {
+        fetch('/query1')
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    var queryHistory = data.map((item, index) => ({
+                        name: item.query_text,
+                        value: item.query_count,
+                        textStyle: {
+                            color: colorPalette[index % colorPalette.length] // 分配颜色
+                        }
+                    }));
+                    updateWordCloud(queryHistory);
+                } else {
+                    console.error('预期获取数组，但得到:', data);
+                }
+            })
+            .catch(error => console.error('错误:', error));
+    }
+
+    // 更新词云图
+    function updateWordCloud(queryHistory) {
+        currentData = queryHistory; // 存储当前数据
+        var option = {
+            tooltip: {
+                show: true
+            },
+            series: [{
+                type: 'wordCloud',
+                shape: 'circle',
+                gridSize: 8,
+                sizeRange: [minSize, maxSize],
+                rotationRange: [-45, 45],
+                data: queryHistory
+            }]
+        };
+        chart.setOption(option);
+    }
+
+    // 监听窗口大小变化，调整图表大小
+    window.addEventListener('resize', function() {
+        chart.resize();
+    });
+
+    // 监听鼠标滚轮事件，实现缩放功能
+    document.getElementById('wordCloud').addEventListener('wheel', function(event) {
+        event.preventDefault(); // 防止页面滚动
+        if (event.deltaY < 0) {
+            // 向上滚动，放大
+            minSize += 2;
+            maxSize += 5;
+        } else {
+            // 向下滚动，缩小
+            minSize = Math.max(10, minSize - 2);
+            maxSize = Math.max(20, maxSize - 5);
+        }
+        updateWordCloud(currentData);
+    });
+
+    // 页面加载时获取历史记录
+    window.onload = loadQueryHistory;
+</script>
+</body>
+</html>

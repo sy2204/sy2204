@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <link href="leaflet/leaflet.css" rel="stylesheet">
+    <link href="bg-dist/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript" src="leaflet/leaflet.js"></script>
+    <script type="text/javascript" src="js/heatmap.js"></script>
+    <script type="text/javascript" src="supermap-iclient-leaflet-dist/iclient-leaflet.js"></script>
+    <script type="text/javascript" src="leaflet/leaflet-heat.js"></script> <!-- 引入 heatmap 插件 -->
+    <!-- 引入 jQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <!-- 引入 Bootstrap -->
+    <script src="bg-dist/js/bootstrap.bundle.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+        }
+
+        /* 地图区域 */
+        #map {
+            width: 100%;
+            height: 100%;
+            background: #e0e0e0;
+        }
+
+        /* 浮动标题 */
+        #title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.4); /* 半透明背景 */
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-family: 'sans-serif'; /* ECharts 默认字体 */
+           /* box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); !* 阴影效果 *!*/
+        }
+    </style>
+</head>
+<body>
+<!-- 地图区域 -->
+<div id="map"></div>
+
+<!-- 浮动标题 -->
+<div id="title">意见反馈热力图</div>
+
+
+<script>
+    // 初始化地图
+    var map = L.map('map', {
+        crs: L.CRS.EPSG4326,
+        center: [30.5375, 114.355], // 默认中心点坐标
+        zoom: 14
+    });
+
+    // 添加天地图图层
+    new L.supermap.TiandituTileLayer({
+        layerType: "vec",
+        key: 'ea8b21866619d49ffd3e92c669106d06'
+    }).addTo(map);
+
+    // 添加 SuperMap 图层
+    var urlwhu = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%40%E6%AD%A6%E5%A4%A7%E5%9C%B0%E5%9B%BE";
+    new L.supermap.TiledMapLayer(urlwhu).addTo(map);
+
+
+    lm.heatMap.onloadheatmap();
+
+</script>
+
+</body>
+</html>

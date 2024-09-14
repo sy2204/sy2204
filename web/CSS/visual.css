@@ -1,0 +1,103 @@
+* {
+  margin: o;
+  padding: 0;
+  box-sizing: border-box;
+}
+#hotmap,
+#account,
+#wordcloud,
+#typechart {
+  display: inline-block;
+  box-shadow: -3px 3px 6px #868686, 3px -3px 6px #ffffff;
+}
+#typechart {
+  width: 11.5rem;
+  height: 4rem;
+  background-color:#ffffff;
+}
+#wordcloud {
+  width: 8rem;
+  height: 6.4rem;
+  background-color:#ffffff;
+  border-radius: 0.5rem;
+  margin-top: -0.2rem;
+  margin-left: 0.1rem;
+}
+#account,
+#typechart {
+  vertical-align: top;
+  /* 设置顶部对齐 */
+  margin-top: 0.2rem;
+  margin-left: 0.1rem;
+  border-radius: 0.5rem;
+}
+#hotmap {
+  width: 11.5rem;
+  height: 7.4rem;
+  background-color:#ffffff;
+  border-radius: 0.5rem;
+  margin-top: -0.7rem;
+  margin-left: 0.1rem;
+}
+#account {
+  width: 8rem;
+  height: 5rem;
+  background-color:#ffffff;
+  border-radius: 0.5rem;
+  margin-left: 0.1rem;
+  position: relative;
+}
+#account .logo-wrapper {
+  position: absolute;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  overflow: hidden;
+}
+#account .logo img {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  border: 0.08rem solid #96cea0;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+}
+.account-card {
+  transition: all 0.5s ease-in-out;
+  width: 7rem;
+  height: 4rem;
+  background-color: #dcefcb80;
+  position: absolute;
+  bottom: 0.1rem;
+  right: 0.1rem;
+  border-radius: 1.5rem 0.4rem 0.4rem 0.4rem;
+}
+.account-card .who,
+.account-card .where,
+.account-card .num,
+.account-card .days {
+  font-size: 0.3rem;
+  color: #4a4a4a;
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+}
+.account-card .where {
+  top: 1.7rem;
+}
+.account-card .num {
+  top: 2.4rem;
+}
+.account-card .days {
+  top: 3.1rem;
+}
+#visual .name {
+  color: #4a4a4a;
+  font-size: 0.5rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0 0.2rem;
+}

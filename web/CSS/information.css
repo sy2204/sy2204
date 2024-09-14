@@ -1,0 +1,199 @@
+.information {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* `translate`函数。`transform`属性允许你对元素进行变形操作，比如旋转、缩放、移动（平移）或倾斜。在这个例子中，`translate`函数被用来移动元素。 `translate`函数接受两个参数，分别对应水平和垂直方向上的移动距离。在这个例子中，两个参数都是`-50%`。这意味着元素将在水平方向上向左移动自身宽度的50%，在垂直方向上向上移动自身高度的50%。 这种使用方式通常用于配合绝对定位，实现元素的居中对齐。例如，如果你想要将一个元素相对于其父元素居中显示，你可以首先通过设置`position: absolute;`和`top: 50%;left: 50%;`将元素的左上角定位到父元素中心点。然后，使用`transform: translate(-50%, -50%);`将元素自身向左和向上各移动50%，从而实现完全居中。
+    这种方法的优点是，无论元素的尺寸如何变化，都能保持居中，而不需要知道元素的具体尺寸。 */
+    transform: translate(-50%, -50%);
+    min-width: 300px;
+    ;
+    /* 希望设置高度随内容变化并且宽度始终为高度0.618倍 */
+    /* aspect-ratio: 1/0.618; */
+    border: 3px solid #666666;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    display: inline-block;
+    padding: 3px;
+}
+.picture img{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.inform {
+    position: relative; 
+    background: #ffffff;
+    border-radius: calc(15px - 5px);
+    border: 2px solid #939393;
+    /* inner-radius = outer- radius - padding */
+    overflow: auto;
+}
+.inform-top{
+    display: flex;
+}
+.name {
+    position: relative;
+    height: 25px;
+    width: fit-content;
+    min-width: 180px;
+    /* inset: 5px; */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    /* margin: 0 auto; */
+    top: 5px;
+    font-family: microsoft yahei;
+    /* 樱花样式 */
+    color: #feffdd;
+    background-image: linear-gradient(to right, #115740,rgb(63,167,120));
+    border-radius: 10px;
+    margin: 0px auto;
+}
+.keyword{
+    display: flex;
+}
+.xuebu,
+.public{
+    position: relative;
+    height: 16px;
+    padding: 0 10px 0 10px;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    top: 15px;
+    font-weight: 600;
+    /* color: #6EA984; */
+    /* 樱花样式 */
+    color: #8fdc7c;
+}
+/* 线 */
+.picture::after {
+    content: '';
+    display: block;
+    width: 99%;
+    height: 3px;
+    /* 樱花样式 */
+    background-color: #1cad7d;
+    margin: -10px auto 5px;
+}
+.text {
+    /* 文字和线的距离 */
+    color: #000000;
+    font-size: 15px;
+    background: none; 
+    overflow: auto;
+    width: calc(95% - 5px);
+    margin: 20px auto 0;
+}
+.text h4,
+.text p{
+    display: inline;
+}
+.text h4::after {
+    content: '';
+    border-right: 2px solid black;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 3px 0 6px;
+    /* 在竖线两侧添加一些间距 */
+    color: black;
+    /* 设置竖线颜色，可根据需要调整 */
+}
+.inform-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+
+
+
+.inform-button{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+        /* 水平居中 */
+    align-items: center;
+        /* 垂直居中，如果按钮是在一列中 */
+    flex-direction: column;
+        /* 如果你想让按钮垂直排列，否则可以移除这一行 */
+}
+.inform-button svg {
+    margin-right: 5px;
+}
+.inbutton {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* width: 50%; */
+    width: fit-content;
+    padding: 0.4em 1.5em;
+    /* 樱花样式 */
+    border: #D4FE45 solid 0.15em;
+    border-radius: 0.25em;
+    margin-bottom: 15px;
+    /* 樱花样式 */
+    color: #417dffbd;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border 300ms, color 300ms;
+    user-select: none;
+    margin-left: 10px;
+}
+.inbutton p {
+    z-index: 1;
+}
+
+.inbutton:hover {
+    color: #212121;
+}
+
+.inbutton:active {
+    /* 樱花样式 */
+    border-color: #9efe45;
+}
+
+.inbutton::after,
+.inbutton::before {
+    content: "";
+    position: absolute;
+    width: 9em;
+    aspect-ratio: 1;
+    /* 樱花样式 */
+    background: #D4FE45;
+    /* #00fa9a;*/
+    opacity: 50%;
+    border-radius: 50%;
+    transition: transform 500ms, background 300ms;
+}
+
+.inbutton::before {
+    left: 0;
+    transform: translateX(-8em);
+}
+
+.inbutton::after {
+    right: 0;
+    transform: translateX(8em);
+}
+
+.inbutton:hover:before {
+    transform: translateX(-1em);
+}
+
+.inbutton:hover:after {
+    transform: translateX(1em);
+}
+
+.inbutton:active:before,
+.inbutton:active:after {
+    /* 樱花样式 */
+    background: #9efe45;
+}
