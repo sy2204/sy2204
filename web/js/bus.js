@@ -2,9 +2,9 @@
 var busInfoBox; // 定义全局变量
 
 // 定义三条巴士路线的 URL
-var busRouteUrl1 = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%E6%A0%A1%E5%B7%B41";
-var busRouteUrl2 = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%E6%A0%A1%E5%B7%B42";
-var busRouteUrl3 = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%E6%A0%A1%E5%B7%B45";
+var busRouteUrl1 = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/%E6%A0%A1%E5%B7%B41";
+var busRouteUrl2 = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/%E6%A0%A1%E5%B7%B42";
+var busRouteUrl3 = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/%E6%A0%A1%E5%B7%B45";
 var currentBusRouteLayer = null;
 
 /*// 校园巴士按钮点击事件

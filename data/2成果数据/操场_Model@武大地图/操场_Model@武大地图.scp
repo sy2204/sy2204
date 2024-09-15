@@ -1,0 +1,189 @@
+{
+	"asset" : "SuperMap",
+	"compressedPackageType" : "Zip",
+	"crs" : "epsg:4490",
+	"dataType" : "ArtificialModel",
+	"extensions" : 
+	{
+		"associateMaterialFile" : "",
+		"attachFiles" : [],
+		"calculatingNormals" : "false",
+		"calculatingTilingTextureCoords" : "false",
+		"combiningRepeatedTextures" : "true",
+		"creatingEdges" : "true",
+		"featureField" : "",
+		"fileNameExtension" : "S3MB",
+		"filteringAttributeFields" : 
+		[
+			"Save_All_Attribute"
+		],
+		"filteringThreshold" : "0",
+		"globeType" : "Ellipsoid_WGS84",
+		"hasSpatialIndex" : "TRUE",
+		"isInstance" : "false",
+		"levels" : [],
+		"lodCount" : "3",
+		"multiTextureMode" : "Double",
+		"pointCloudLayers" : [],
+		"renderMode" : "Batch",
+		"s3m:AttributeExtentName" : "attribute",
+		"s3m:FileType" : "OSGBCacheFile",
+		"s3m:MaterialType" : "Normal",
+		"s3m:TextureCompressionType" : "DXT",
+		"s3m:TextureSharing" : "FALSE",
+		"s3m:TileSplitType" : "GLOBAL",
+		"s3m:TransparencyOptimization" : "TRUE",
+		"s3m:VertexCompressionType" : "NONE",
+		"s3m:VertexWeightMode" : "None",
+		"s3m:processType" : "Normal",
+		"scales" : 
+		[
+			{
+				"caption" : "18489334",
+				"tilewidth" : "1252344.27142433",
+				"value" : "0.00000005408523429128496"
+			}
+		],
+		"secondTextureType" : "ShadowMap",
+		"simplificationRate" : 
+		[
+			"0.750000",
+			"0.500000",
+			"0.250000"
+		],
+		"textureLOD" : "TRUE",
+		"textureLimitSize" : "0",
+		"tilingTextureCoordU" : "0",
+		"tilingTextureCoordV" : "0",
+		"vertexWeightMode" : "None",
+		"vol" : []
+	},
+	"geoBounds" : 
+	{
+		"bottom" : -88.124698443426922,
+		"left" : -65.645652800842825,
+		"right" : 114.36469430009166,
+		"top" : 58.634112026099494
+	},
+	"heightRange" : 
+	{
+		"max" : 1.0000000335276127,
+		"min" : -4.6566128730773926e-09
+	},
+	"idFieldName" : "",
+	"lodType" : "Replace",
+	"position" : 
+	{
+		"units" : "Degree",
+		"x" : 24.359520749624416,
+		"y" : -14.745293208663714,
+		"z" : 0.0
+	},
+	"pyramidSplitType" : "QuadTree",
+	"rootTiles" : 
+	[
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 5497961.4393757824,
+					"y" : 3105651.6506655212,
+					"z" : -7196879.2949457429
+				},
+				"xExtent" : 
+				{
+					"x" : 0.44546623304988797,
+					"y" : 0.2541816136558801,
+					"z" : -0.066894608873338507
+				},
+				"yExtent" : 
+				{
+					"x" : -118.81365784742216,
+					"y" : 233.90260419852717,
+					"z" : 97.560459463662298
+				},
+				"zExtent" : 
+				{
+					"x" : 160.81758220072177,
+					"y" : -141.20291300298638,
+					"z" : 534.38713333121643
+				}
+			},
+			"url" : "./Tile_-0003_0010_0000/Tile_-0003_0010_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : -3328258.885805272,
+					"y" : 5233565.852175598,
+					"z" : -7756899.9478803389
+				},
+				"xExtent" : 
+				{
+					"x" : 99.943704875758783,
+					"y" : 99.311237532052346,
+					"z" : 137.91287248116217
+				},
+				"yExtent" : 
+				{
+					"x" : -0.2639053745671967,
+					"y" : 0.41859534565791923,
+					"z" : -0.11018217993864421
+				},
+				"zExtent" : 
+				{
+					"x" : -325.88241533507625,
+					"y" : -120.4592201743352,
+					"z" : 322.90568218126532
+				}
+			},
+			"url" : "./Tile_-0006_-0006_0000/Tile_-0006_-0006_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 209458.25423587521,
+					"y" : -6154596.1814975319,
+					"z" : -4759671.4069589106
+				},
+				"xExtent" : 
+				{
+					"x" : 36.500221087803979,
+					"y" : 1.2072661038256853,
+					"z" : -0.10921419115428721
+				},
+				"yExtent" : 
+				{
+					"x" : -0.016368759669107783,
+					"y" : 0.48338417990699478,
+					"z" : -0.12718137800104171
+				},
+				"zExtent" : 
+				{
+					"x" : -0.0048363473744651303,
+					"y" : 0.22292637367162951,
+					"z" : 0.84790909659641045
+				}
+			},
+			"url" : "./Tile_0007_0010_0000/Tile_0007_0010_0000.s3mb"
+		}
+	],
+	"version" : "3.0",
+	"vertexAttributeDescript" : 
+	[
+		{
+			"category" : "TextureCoordMatrix",
+			"range" : 
+			{
+				"dimension" : 0,
+				"max" : [],
+				"min" : []
+			}
+		}
+	]
+}

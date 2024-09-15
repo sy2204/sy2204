@@ -5,7 +5,7 @@ var sm = sm || {};
 
 sm.query = (function () {
     var shopLayer;
-    var url = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/cata";
+    var url = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/cata";
 
     function createOrUpdateShopLayer(features) {
         if (shopLayer) {
@@ -34,7 +34,7 @@ sm.query = (function () {
     function query(data) {
         var param = new L.supermap.QueryBySQLParameters({
             queryParams: [{
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "name like '%" + data.field.title + "%'"
             }]
         });
@@ -46,12 +46,12 @@ sm.query = (function () {
     }
 
     function queryByID(id, latlng) {
-        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var dataurl = "http://localhost:8090/iserver/services/data-CampusWorkspace/rest/data";
 
         var fParam = new L.supermap.GetFeaturesBySQLParameters({
-            datasetNames: ["superwhu:resultDataset"],
+            datasetNames: ["Campus:resultDataset"],
             queryParameter: {
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "SmID =" + id,
             }
         });
@@ -80,14 +80,14 @@ sm.query = (function () {
                         <p><span class="xuebu">${spot.department}</span><span class="public">对外开放：${spot.publicAccess}</span></p>
                         <div class="splitLine"></div>
                         <div>
-                            <img class="icon" src="/image/whu图书馆.png" alt="">
+                            <img class="icon" src="image/whu图书馆.png" alt="">
                         </div>
                     </div>
                             <div class="detailPage">
                                 <div class="contentBox">
                                     <p class="content">${spot.description}</p>
                                     <button class="informButton slide-in-top" onclick="names.push('${spot.name}'); handleGoHere(${latlng[0]}, ${latlng[1]})">
-                                        <img class="informButtonImage" src="/image/去这里.png" alt="">
+                                        <img class="informButtonImage" src="image/去这里.png" alt="">
                                         &ensp;&ensp;&ensp;去这里</button>
                                 </div>
                                     <div class="slide-in-top">

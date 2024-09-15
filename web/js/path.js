@@ -40,7 +40,7 @@ function Route() {
         return;
     }
 
-    var url_path = "http://localhost:8090/iserver/services/transportationAnalyst-superwhu/rest/networkanalyst/superwhu_Network@superwhu";
+    var url_path = "http://localhost:8090/iserver/services/transportationAnalyst-CampusWorkspace/rest/networkanalyst/superwhu_Network@Campus";
 
     // 初始化路径分析参数
     var analystParameter = new L.supermap.TransportationAnalystParameter({

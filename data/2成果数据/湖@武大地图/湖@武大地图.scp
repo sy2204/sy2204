@@ -1,0 +1,115 @@
+{
+	"asset" : "SuperMap",
+	"compressedPackageType" : "Zip",
+	"crs" : "epsg:4490",
+	"dataType" : "Vector",
+	"extensions" : 
+	{
+		"attachFiles" : [],
+		"filteringAttributeFields" : [],
+		"globeType" : "Ellipsoid_WGS84",
+		"levels" : [],
+		"pointCloudLayers" : [],
+		"s3m:AttributeExtentName" : "attribute",
+		"s3m:FileType" : "ClampGroundRealtimeRasterCache",
+		"s3m:ProcessType" : "Normal",
+		"s3m:TileSplitType" : "GLOBAL",
+		"scales" : 
+		[
+			{
+				"caption" : "2256",
+				"tilewidth" : "152.87405657",
+				"value" : "0.0004430662393142064"
+			}
+		],
+		"simplificationRate" : [],
+		"vol" : []
+	},
+	"geoBounds" : 
+	{
+		"bottom" : 30.539573717497696,
+		"left" : 114.35716810768496,
+		"right" : 114.35812554378207,
+		"top" : 30.540282762154565
+	},
+	"heightRange" : 
+	{
+		"max" : 0.0,
+		"min" : 0.0
+	},
+	"idFieldName" : "",
+	"lodType" : "Replace",
+	"position" : 
+	{
+		"units" : "Degree",
+		"x" : 114.35764682573351,
+		"y" : 30.539928239826132,
+		"z" : 0.0
+	},
+	"pyramidSplitType" : "Unknown",
+	"rootTiles" : 
+	[
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : -3.1399820727529004e-05,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"xExtent" : 
+				{
+					"x" : 0.0004473182198125869,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"yExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 0.00035452231531962752,
+					"z" : 0.0
+				},
+				"zExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				}
+			},
+			"url" : ".\\Tile_-22239_83272\\Tile_-22239_83272.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 0.00044731822782750896,
+					"y" : -1.079514913726598e-05,
+					"z" : 0.0
+				},
+				"xExtent" : 
+				{
+					"x" : 3.1399820727529004e-05,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"yExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 0.00010950519208563492,
+					"z" : 0.0
+				},
+				"zExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 0.0
+				}
+			},
+			"url" : ".\\Tile_-22239_83273\\Tile_-22239_83273.s3mb"
+		}
+	],
+	"version" : "3.0",
+	"vertexAttributeDescript" : []
+}

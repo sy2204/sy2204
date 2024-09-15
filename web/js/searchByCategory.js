@@ -1,12 +1,12 @@
 var sm = sm || {};
 
 sm.search = (function () {
-    var url = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/cata";
+    var url = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/cata";
 
     function searchByCategory(category) {
         var param = new L.supermap.QueryBySQLParameters({
             queryParams: [{
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "FLMC_1 like '%" + category + "%' OR FLMC like '%" + category + "%'"
             }]
         });

@@ -1,0 +1,59 @@
+{
+	"layerInfos" : 
+	[
+		{
+			"dataSourceName" : "",
+			"fieldInfos" : 
+			[
+				{
+					"alias" : "SmID",
+					"isRequired" : true,
+					"name" : "SmID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmUserID",
+					"isRequired" : true,
+					"name" : "SmUserID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmArea",
+					"isRequired" : true,
+					"name" : "SmArea",
+					"size" : 8,
+					"type" : "double"
+				},
+				{
+					"alias" : "SmPerimeter",
+					"isRequired" : true,
+					"name" : "SmPerimeter",
+					"size" : 8,
+					"type" : "double"
+				},
+				{
+					"alias" : "SmGeometry",
+					"isRequired" : true,
+					"name" : "SmGeometry",
+					"size" : 0,
+					"type" : "geometry"
+				},
+				{
+					"alias" : "SmGeoParam",
+					"isRequired" : true,
+					"name" : "SmGeoParam",
+					"size" : 0,
+					"type" : "geometry"
+				}
+			],
+			"idRange" : 
+			{
+				"maxID" : 5,
+				"minID" : 1
+			},
+			"layerName" : "sheng"
+		}
+	]
+}

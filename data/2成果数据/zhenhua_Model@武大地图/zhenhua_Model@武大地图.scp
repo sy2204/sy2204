@@ -1,0 +1,279 @@
+{
+	"asset" : "SuperMap",
+	"compressedPackageType" : "Zip",
+	"crs" : "epsg:4490",
+	"dataType" : "ArtificialModel",
+	"extensions" : 
+	{
+		"associateMaterialFile" : "",
+		"attachFiles" : [],
+		"calculatingNormals" : "false",
+		"calculatingTilingTextureCoords" : "false",
+		"combiningRepeatedTextures" : "true",
+		"creatingEdges" : "true",
+		"featureField" : "",
+		"fileNameExtension" : "S3MB",
+		"filteringAttributeFields" : 
+		[
+			"Save_All_Attribute"
+		],
+		"filteringThreshold" : "0",
+		"globeType" : "Ellipsoid_WGS84",
+		"hasSpatialIndex" : "TRUE",
+		"isInstance" : "false",
+		"levels" : [],
+		"lodCount" : "3",
+		"multiTextureMode" : "Double",
+		"pointCloudLayers" : [],
+		"renderMode" : "Batch",
+		"s3m:AttributeExtentName" : "attribute",
+		"s3m:FileType" : "OSGBCacheFile",
+		"s3m:MaterialType" : "Normal",
+		"s3m:TextureCompressionType" : "DXT",
+		"s3m:TextureSharing" : "FALSE",
+		"s3m:TileSplitType" : "GLOBAL",
+		"s3m:TransparencyOptimization" : "TRUE",
+		"s3m:VertexCompressionType" : "NONE",
+		"s3m:VertexWeightMode" : "None",
+		"s3m:processType" : "Normal",
+		"scales" : 
+		[
+			{
+				"caption" : "4513",
+				"tilewidth" : "305.74811314",
+				"value" : "0.0002215331196571032"
+			}
+		],
+		"secondTextureType" : "ShadowMap",
+		"simplificationRate" : 
+		[
+			"0.750000",
+			"0.500000",
+			"0.250000"
+		],
+		"textureLOD" : "TRUE",
+		"textureLimitSize" : "0",
+		"tilingTextureCoordU" : "0",
+		"tilingTextureCoordV" : "0",
+		"vertexWeightMode" : "None",
+		"vol" : []
+	},
+	"geoBounds" : 
+	{
+		"bottom" : 30.534488697157965,
+		"left" : 114.352049399081,
+		"right" : 114.36260600247796,
+		"top" : 30.542781700223937
+	},
+	"heightRange" : 
+	{
+		"max" : 15.000000472180545,
+		"min" : -2.7939677238464355e-09
+	},
+	"idFieldName" : "",
+	"lodType" : "Replace",
+	"position" : 
+	{
+		"units" : "Degree",
+		"x" : 114.35732770077948,
+		"y" : 30.538635198690951,
+		"z" : 0.0
+	},
+	"pyramidSplitType" : "QuadTree",
+	"rootTiles" : 
+	[
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : -480.52668902059315,
+					"y" : -250.93566329464664,
+					"z" : 7.4769083911828265
+				},
+				"xExtent" : 
+				{
+					"x" : 25.996488471886803,
+					"y" : -0.0011544364677555301,
+					"z" : 0.001956825680927561
+				},
+				"yExtent" : 
+				{
+					"x" : 0.0011371561779378214,
+					"y" : 25.609072640007312,
+					"z" : 0.0010117868692594487
+				},
+				"zExtent" : 
+				{
+					"x" : -0.00056456162452868722,
+					"y" : -0.0002962935688918653,
+					"z" : 7.5000434911871476
+				}
+			},
+			"url" : "./Tile_-11118_41634_0000/Tile_-11118_41634_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : -292.51871633590844,
+					"y" : -383.10592732877939,
+					"z" : 7.4812637774656539
+				},
+				"xExtent" : 
+				{
+					"x" : 88.546531551937051,
+					"y" : -0.0023936339871337229,
+					"z" : 0.0040573254473722248
+				},
+				"yExtent" : 
+				{
+					"x" : 0.0020698752740336392,
+					"y" : 76.577712845431066,
+					"z" : 0.0046187724498553224
+				},
+				"zExtent" : 
+				{
+					"x" : -0.00034369043245103154,
+					"y" : -0.00045237537492949509,
+					"z" : 7.5003874583837264
+				}
+			},
+			"url" : "./Tile_-11118_41635_0000/Tile_-11118_41635_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : -371.74192722704822,
+					"y" : -125.3661827356261,
+					"z" : 7.4876831605150196
+				},
+				"xExtent" : 
+				{
+					"x" : 76.611739113702868,
+					"y" : -55.529244211257399,
+					"z" : 0.0033944166123957053
+				},
+				"yExtent" : 
+				{
+					"x" : 40.851905516450692,
+					"y" : 56.361932966175416,
+					"z" : 0.0035862757725961961
+				},
+				"zExtent" : 
+				{
+					"x" : -0.00044464212155728255,
+					"y" : -0.00015496626668923862,
+					"z" : 7.5004483701979785
+				}
+			},
+			"url" : "./Tile_-11119_41634_0000/Tile_-11119_41634_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 474.51426267395635,
+					"y" : 302.52449232731732,
+					"z" : 7.4750565110524416
+				},
+				"xExtent" : 
+				{
+					"x" : 31.982953906150996,
+					"y" : 0.0014025808055295949,
+					"z" : -0.002377442342843004
+				},
+				"yExtent" : 
+				{
+					"x" : -0.0015648761570528987,
+					"y" : 35.680883332813984,
+					"z" : -0.0016992685118064281
+				},
+				"zExtent" : 
+				{
+					"x" : 0.00055749871165130637,
+					"y" : 0.00035720768215281124,
+					"z" : 7.5000584825111556
+				}
+			},
+			"url" : "./Tile_-11120_41638_0000/Tile_-11120_41638_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 43.938882072029507,
+					"y" : 415.72093441200462,
+					"z" : 7.486088098455733
+				},
+				"xExtent" : 
+				{
+					"x" : 58.738072253973627,
+					"y" : 30.243936041535477,
+					"z" : -0.0023928502060285572
+				},
+				"yExtent" : 
+				{
+					"x" : -15.103718991312201,
+					"y" : 29.333593746858728,
+					"z" : -0.0017832413598430777
+				},
+				"zExtent" : 
+				{
+					"x" : 5.5942430810862049e-05,
+					"y" : 0.00048475431905552506,
+					"z" : 7.5001891548369386
+				}
+			},
+			"url" : "./Tile_-11121_41636_0000/Tile_-11121_41636_0000.s3mb"
+		},
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 343.73835370888918,
+					"y" : 424.75182946975747,
+					"z" : 7.4762766979665516
+				},
+				"xExtent" : 
+				{
+					"x" : 95.155576925045963,
+					"y" : 9.1940665558253958,
+					"z" : -0.0057234954955849458
+				},
+				"yExtent" : 
+				{
+					"x" : -3.4238965222387927,
+					"y" : 35.436206021453998,
+					"z" : -0.0021417160262685417
+				},
+				"zExtent" : 
+				{
+					"x" : 0.00040357768463466126,
+					"y" : 0.0004923137785342583,
+					"z" : 7.5004921546272509
+				}
+			},
+			"url" : "./Tile_-11121_41637_0000/Tile_-11121_41637_0000.s3mb"
+		}
+	],
+	"version" : "3.0",
+	"vertexAttributeDescript" : 
+	[
+		{
+			"category" : "TextureCoordMatrix",
+			"range" : 
+			{
+				"dimension" : 0,
+				"max" : [],
+				"min" : []
+			}
+		}
+	]
+}

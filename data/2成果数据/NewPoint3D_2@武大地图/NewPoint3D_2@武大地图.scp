@@ -1,0 +1,83 @@
+{
+	"asset" : "SuperMap",
+	"compressedPackageType" : "Zip",
+	"crs" : "epsg:4326",
+	"dataType" : "Network",
+	"extensions" : 
+	{
+		"attachFiles" : [],
+		"filteringAttributeFields" : [],
+		"globeType" : "Ellipsoid_WGS84",
+		"levels" : [],
+		"pointCloudLayers" : [],
+		"s3m:FileType" : "OSGBCacheFile",
+		"s3m:TileSplitType" : "GLOBAL",
+		"scales" : 
+		[
+			{
+				"caption" : "73957338",
+				"tilewidth" : "5009377.08569731",
+				"value" : "0.00000001352130857282124"
+			}
+		],
+		"simplificationRate" : [],
+		"vol" : []
+	},
+	"geoBounds" : 
+	{
+		"bottom" : 30.540326316844997,
+		"left" : 114.35683459925829,
+		"right" : 114.3568770706601,
+		"top" : 30.541366214284615
+	},
+	"heightRange" : 
+	{
+		"max" : 0.0,
+		"min" : 0.0
+	},
+	"idFieldName" : "",
+	"lodType" : "Replace",
+	"position" : 
+	{
+		"units" : "Degree",
+		"x" : 114.35685583495919,
+		"y" : 30.540846265564806,
+		"z" : 0.0
+	},
+	"pyramidSplitType" : "Unknown",
+	"rootTiles" : 
+	[
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 0.56683287641422808,
+					"y" : -0.56601025545968042,
+					"z" : 8.1978174951048075
+				},
+				"xExtent" : 
+				{
+					"x" : 10.287752265819403,
+					"y" : 0.0,
+					"z" : 0.0
+				},
+				"yExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 65.892507809260906,
+					"z" : 0.0
+				},
+				"zExtent" : 
+				{
+					"x" : 0.0,
+					"y" : 0.0,
+					"z" : 9.3278801858199039
+				}
+			},
+			"url" : ".\\Tile_-0001_0002\\Tile_-0001_0002.s3mb"
+		}
+	],
+	"version" : "3.0",
+	"vertexAttributeDescript" : []
+}

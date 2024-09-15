@@ -1,0 +1,38 @@
+{
+	"layerInfos" : 
+	[
+		{
+			"dataSourceName" : "",
+			"fieldInfos" : 
+			[
+				{
+					"alias" : "SmID",
+					"isRequired" : true,
+					"name" : "SmID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmUserID",
+					"isRequired" : true,
+					"name" : "SmUserID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmGeometry",
+					"isRequired" : true,
+					"name" : "SmGeometry",
+					"size" : 0,
+					"type" : "geometry"
+				}
+			],
+			"idRange" : 
+			{
+				"maxID" : 21,
+				"minID" : 1
+			},
+			"layerName" : "NewPoint3D"
+		}
+	]
+}

@@ -1,0 +1,129 @@
+{
+	"asset" : "SuperMap",
+	"compressedPackageType" : "Zip",
+	"crs" : "epsg:4490",
+	"dataType" : "ArtificialModel",
+	"extensions" : 
+	{
+		"associateMaterialFile" : "",
+		"attachFiles" : [],
+		"calculatingNormals" : "false",
+		"calculatingTilingTextureCoords" : "false",
+		"combiningRepeatedTextures" : "true",
+		"creatingEdges" : "true",
+		"featureField" : "",
+		"fileNameExtension" : "S3MB",
+		"filteringAttributeFields" : 
+		[
+			"Save_All_Attribute"
+		],
+		"filteringThreshold" : "0",
+		"globeType" : "Ellipsoid_WGS84",
+		"hasSpatialIndex" : "TRUE",
+		"isInstance" : "false",
+		"levels" : [],
+		"lodCount" : "3",
+		"multiTextureMode" : "Double",
+		"pointCloudLayers" : [],
+		"renderMode" : "Batch",
+		"s3m:AttributeExtentName" : "attribute",
+		"s3m:FileType" : "OSGBCacheFile",
+		"s3m:MaterialType" : "Normal",
+		"s3m:TextureCompressionType" : "DXT",
+		"s3m:TextureSharing" : "FALSE",
+		"s3m:TileSplitType" : "GLOBAL",
+		"s3m:TransparencyOptimization" : "TRUE",
+		"s3m:VertexCompressionType" : "NONE",
+		"s3m:VertexWeightMode" : "None",
+		"s3m:processType" : "Normal",
+		"scales" : 
+		[
+			{
+				"caption" : "2256",
+				"tilewidth" : "152.87405657",
+				"value" : "0.0004430662393142064"
+			}
+		],
+		"secondTextureType" : "ShadowMap",
+		"simplificationRate" : 
+		[
+			"0.750000",
+			"0.500000",
+			"0.250000"
+		],
+		"textureLOD" : "TRUE",
+		"textureLimitSize" : "0",
+		"tilingTextureCoordU" : "0",
+		"tilingTextureCoordV" : "0",
+		"vertexWeightMode" : "None",
+		"vol" : []
+	},
+	"geoBounds" : 
+	{
+		"bottom" : 30.535714325692613,
+		"left" : 114.3536028003231,
+		"right" : 114.35644269689389,
+		"top" : 30.538573696381221
+	},
+	"heightRange" : 
+	{
+		"max" : 1.862645149230957e-09,
+		"min" : -1.862645149230957e-09
+	},
+	"idFieldName" : "",
+	"lodType" : "Replace",
+	"position" : 
+	{
+		"units" : "Degree",
+		"x" : 114.35502274860849,
+		"y" : 30.537144011036915,
+		"z" : 0.0
+	},
+	"pyramidSplitType" : "QuadTree",
+	"rootTiles" : 
+	[
+		{
+			"boundingbox" : 
+			{
+				"center" : 
+				{
+					"x" : 0.0003988743263657155,
+					"y" : 0.00075760876282282032,
+					"z" : -0.0013572692550786174
+				},
+				"xExtent" : 
+				{
+					"x" : 136.25929260253918,
+					"y" : 5.022651631541039e-09,
+					"z" : -8.5139827028274858e-09
+				},
+				"yExtent" : 
+				{
+					"x" : -5.8423492860974671e-09,
+					"y" : 158.49683380126964,
+					"z" : 2.9886449076871111e-09
+				},
+				"zExtent" : 
+				{
+					"x" : 6.9254256746588537e-14,
+					"y" : -2.0899387864607744e-14,
+					"z" : 0.0011083574354415762
+				}
+			},
+			"url" : "./Tile_-22237_83270_0000/Tile_-22237_83270_0000.s3mb"
+		}
+	],
+	"version" : "3.0",
+	"vertexAttributeDescript" : 
+	[
+		{
+			"category" : "TextureCoordMatrix",
+			"range" : 
+			{
+				"dimension" : 0,
+				"max" : [],
+				"min" : []
+			}
+		}
+	]
+}

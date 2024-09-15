@@ -44,7 +44,7 @@
 }
 
  .card__content:hover{
-    background-image: url(/image/bg花.jpg);
+    background-image: url(../image/bg花.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -50,14 +50,14 @@ label[for="checkbox"] {
     margin: 4px;
     transition: .4s;
     /* 放的是搜索图标，表示点开搜索 */
-    background-image: url('/image/search.png');
+    background-image: url('../image/search.png');
     background-repeat: no-repeat;
     background-size: 28px 28px;
     background-position: 4px;
     cursor: pointer;
 }
 [for=checkbox]:hover{
-    background-image: url('/image/search\ \(2\).gif');
+    background-image: url('../image/search\ \(2\).gif');
     background-repeat: no-repeat;
     background-size: 32px 32px;
     background-position: 1px
@@ -69,7 +69,7 @@ label[for="checkbox"] {
     height: 40px;
     border-radius: 10px; 
     /* 小方框内的关闭图标，表示收起搜索框 */
-    background-image: url('/image/静态关闭.png');
+    background-image: url('../image/静态关闭.png');
     background-repeat: no-repeat;
     background-size: 28px 28px;
     background-position: center;
@@ -81,7 +81,7 @@ label[for="checkbox"] {
     right: 10px;
 }
 #checkbox:checked~label:hover{
-    background-image: url('/image/Close.gif');
+    background-image: url('../image/Close.gif');
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: center;
@@ -132,7 +132,7 @@ label[for="checkbox"] {
     margin: 5px 0 0 0;
 }
 .clear button {
-    background-image: url('/image/静态删除.png');
+    background-image: url('../image/静态删除.png');
     background-repeat: no-repeat;
     background-size: 24px 24px;
     background-position: center;
@@ -147,7 +147,7 @@ label[for="checkbox"] {
     background-color: #fff;
 }
 .clear button:hover {
-    background-image: url('/image/Delete.gif');
+    background-image: url('../image/Delete.gif');
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: center;

@@ -1,0 +1,87 @@
+{
+	"layerInfos" : 
+	[
+		{
+			"dataSourceName" : "武大地图",
+			"fieldInfos" : 
+			[
+				{
+					"alias" : "SmID",
+					"isRequired" : true,
+					"name" : "SmID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmUserID",
+					"isRequired" : true,
+					"name" : "SmUserID",
+					"size" : 4,
+					"type" : "int32"
+				},
+				{
+					"alias" : "SmIndexKey",
+					"isRequired" : true,
+					"name" : "SmIndexKey",
+					"size" : 0,
+					"type" : "geometry"
+				},
+				{
+					"alias" : "SmGeometry",
+					"isRequired" : true,
+					"name" : "SmGeometry",
+					"size" : 0,
+					"type" : "geometry"
+				},
+				{
+					"alias" : "SmMaxZ",
+					"isRequired" : true,
+					"name" : "SmMaxZ",
+					"size" : 8,
+					"type" : "double"
+				},
+				{
+					"alias" : "SmMinZ",
+					"isRequired" : true,
+					"name" : "SmMinZ",
+					"size" : 8,
+					"type" : "double"
+				},
+				{
+					"alias" : "SmSdriW",
+					"isRequired" : true,
+					"name" : "SmSdriW",
+					"size" : 4,
+					"type" : "float"
+				},
+				{
+					"alias" : "SmSdriN",
+					"isRequired" : true,
+					"name" : "SmSdriN",
+					"size" : 4,
+					"type" : "float"
+				},
+				{
+					"alias" : "SmSdriE",
+					"isRequired" : true,
+					"name" : "SmSdriE",
+					"size" : 4,
+					"type" : "float"
+				},
+				{
+					"alias" : "SmSdriS",
+					"isRequired" : true,
+					"name" : "SmSdriS",
+					"size" : 4,
+					"type" : "float"
+				}
+			],
+			"idRange" : 
+			{
+				"maxID" : 5,
+				"minID" : 1
+			},
+			"layerName" : "sheng_Model"
+		}
+	]
+}

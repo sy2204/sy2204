@@ -2,7 +2,7 @@ var travelrouteLayer;
 var travelpointLayer;
 
 var travel = (function () {
-    var url = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%E6%99%AF%E7%82%B9"; // 合并后的单个URL
+    var url = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/%E6%99%AF%E7%82%B9"; // 合并后的单个URL
 
     // 创建或更新路线图层
     function createOrUpdateTravelrouteLayer(features) {
@@ -58,7 +58,7 @@ var travel = (function () {
         var routeParam = new L.supermap.QueryBySQLParameters({
 
             queryParams: [{
-                name: "游玩路线@superwhu",
+                name: "游玩路线@Campus",
                 attributeFilter: "" // 空参数表示查询所有
             }]
         });
@@ -75,7 +75,7 @@ var travel = (function () {
         var routeParam = new L.supermap.QueryBySQLParameters({
 
             queryParams: [{
-                name: "景点@superwhu",
+                name: "景点@Campus",
                 attributeFilter: "" // 空参数表示查询所有
             }]
         });
@@ -87,11 +87,11 @@ var travel = (function () {
     }
 
     function queryTravelbyPoints(id, latlng) {
-        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var dataurl = "http://localhost:8090/iserver/services/data-CampusWorkspace/rest/data";
         var pointParam = new L.supermap.GetFeaturesBySQLParameters({
-            datasetNames: ["superwhu:景点"],
+            datasetNames: ["Campus:景点"],
             queryParameter: {
-                name: "景点@superwhu",
+                name: "景点@Campus",
                 attributeFilter: "SmID =" + id,
             }
         });

@@ -184,7 +184,7 @@
     }).addTo(map);
 
     // 添加 SuperMap 图层
-    var urlwhu = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%40%E6%AD%A6%E5%A4%A7%E5%9C%B0%E5%9B%BE";
+    var urlwhu = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/CampusMap_01";
     new L.supermap.TiledMapLayer(urlwhu).addTo(map);
 
     var shopLayer;
@@ -193,12 +193,12 @@
 
     // 查询所有数据
     function queryAllData() {
-        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var dataurl = "http://localhost:8090/iserver/services/data-CampusWorkspace/rest/data";
         var fParam = new L.supermap.GetFeaturesBySQLParameters({
-            datasetNames: ["superwhu:resultDataset"],
+            datasetNames: ["Campus:resultDataset"],
             toIndex: -1,
             queryParameter: {
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "1=1",
                 maxFeatures: -1 // 查询所有数据
             }
@@ -232,11 +232,11 @@
 
     // 根据查询条件进行查询
     function queryByID(input) {
-        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var dataurl = "http://localhost:8090/iserver/services/data-CampusWorkspace/rest/data";
         var fParam = new L.supermap.GetFeaturesBySQLParameters({
-            datasetNames: ["superwhu:resultDataset"],
+            datasetNames: ["Campus:resultDataset"],
             queryParameter: {
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "name like '%" + input + "%'"
             }
         });
@@ -415,13 +415,13 @@
 
     // 更新要素到 SuperMap iServer 数据服务
     function updateFeature(feature) {
-        var dataurl = "http://localhost:8090/iserver/services/data-superwhu/rest/data";
+        var dataurl = "http://localhost:8090/iserver/services/data-CampusWorkspace/rest/data";
 
         // 打印 feature，确保数据结构正确
         //console.log('准备更新的要素:', feature);
 
         var fParam = new L.supermap.EditFeaturesParameters({
-            dataSourceName: "superwhu",  // 数据源名称
+            dataSourceName: "Campus",  // 数据源名称
             dataSetName: "resultDataset",  // 数据集名称
             features: [feature],
             editType: "update"  // 选择更新操作

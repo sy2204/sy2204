@@ -144,7 +144,7 @@ function calculateRoute() {
 
     isPathAnalysisActive = false;  // 停止路径分析模式
 
-    var url_path = "http://localhost:8090/iserver/services/transportationAnalyst-superwhu/rest/networkanalyst/superwhu_Network@superwhu";
+    var url_path = "http://localhost:8090/iserver/services/transportationAnalyst-CampusWorkspace/rest/networkanalyst/superwhu_Network@Campus";
 
     var analystParameter = new L.supermap.TransportationAnalystParameter({
         resultSetting: new L.supermap.TransportationAnalystResultSetting({

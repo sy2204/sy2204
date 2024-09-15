@@ -81,7 +81,7 @@
 <a href="index.html" type="button" class="btn3D">
     <span class="btn3D_text">返回客户端</span>
     <span class="btn3D_icon">
-        <img src="/image/back.png" alt="">
+        <img src="image/back.png" alt="">
     </span>
 </a>
 
@@ -131,7 +131,7 @@
         scene.globe.depthTestAgainstTerrain = false;
 
         var camera = scene.camera;
-        var promise = scene.open('http://localhost:8090/iserver/services/3D-superwhu/rest/realspace', 'yinding');
+        var promise = scene.open('http://localhost:8090/iserver/services/3D-CampusWorkspace/rest/realspace', 'CampusScene');
         SuperMap3D.when(promise, function (layers) {
             // 注释掉原来的相机设置
             // camera.setView({

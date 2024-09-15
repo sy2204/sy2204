@@ -4,7 +4,7 @@ var facilityStartPointMarker = null; // 用于存储出发点的标记
 var minpathLayer = null;
 
 sm.closestFacilitySearch = (function () {
-    var serviceUrl = "http://localhost:8090/iserver/services/transportationAnalyst-superwhu/rest/networkanalyst/superwhu_Network@superwhu";
+    var serviceUrl = "http://localhost:8090/iserver/services/transportationAnalyst-CampusWorkspace/rest/networkanalyst/superwhu_Network@Campus";
     var selectedCategory;
 
     function promptForStartingPoint() {
@@ -79,10 +79,10 @@ sm.closestFacilitySearch = (function () {
 
 
     function searchFacilitiesByCategory(category) {
-        var url = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/cata";
+        var url = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/cata";
         var param = new L.supermap.QueryBySQLParameters({
             queryParams: [{
-                name: "resultDataset@superwhu",
+                name: "resultDataset@Campus",
                 attributeFilter: "FLMC_1 like '%" + category + "%' OR FLMC like '%" + category + "%'"
             }]
         });

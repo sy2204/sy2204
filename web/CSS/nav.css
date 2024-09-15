@@ -109,7 +109,7 @@ a {
     padding: .25rem ;
     color: var(--white-color);
     border-radius: .5rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.6rem;
     transition: .3s;
     cursor: pointer;
 }

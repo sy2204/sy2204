@@ -33,7 +33,7 @@
 	transition: 1.0s;
 	transition-timing-function: cubic-bezier(0.56, 1.35, 0.52, 1.00);
 	/* 加入回弹动画 */
-	background-image: url(/image/student.png);
+	background-image: url(../image/student.png);
 	background-size: 28px;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -56,7 +56,7 @@
 }
 .ying{
 	position: absolute;
-	background-image: url(/image/ssakura.png);
+	background-image: url(../image/ssakura.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -103,7 +103,7 @@
 	/* 加入回弹动画 */
 }
 .student-M{
-	background-image: url(/image/btn1.png);
+	background-image: url(../image/btn1.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
@@ -114,7 +114,7 @@
 	top: 8px;
 }
 .student-L{
-	background-image: url(/image/btn2.png);
+	background-image: url(../image/btn2.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

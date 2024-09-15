@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
-    var urlwhu1 = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%40%E6%AD%A6%E5%A4%A7%E5%9C%B0%E5%9B%BE";
-    var urlwhu2 = "http://localhost:8090/iserver/services/map-superwhu/rest/maps/%E6%A8%B1%E8%8A%B1%E7%89%88";
+    var urlwhu1 = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/CampusMap_01";
+    var urlwhu2 = "http://localhost:8090/iserver/services/map-CampusWorkspace/rest/maps/CampusMap_02";
     var currentUrl = urlwhu1; // 初始URL
     var mapLayer = new L.supermap.TiledMapLayer(currentUrl).addTo(map);
     let isBusRoute = true; // 状态变量，跟踪当前路线
@@ -43,10 +43,10 @@ $(document).ready(function () {
         if (link && image) {
             if (isBusRoute) {
                 link.textContent = "赏樱路线";
-                image.src = "/image/sakuratree.png";
+                image.src = "image/sakuratree.png";
             } else {
                 link.textContent = "校园巴士路线";
-                image.src = "/image/bus.png";
+                image.src = "image/bus.png";
             }
             isBusRoute = !isBusRoute; // 切换状态变量
         }
@@ -78,7 +78,7 @@ mainBtn.addEventListener("click", function () {
         //樱花上升-樱花隐藏
         sakuraAll.style.transform = "translateY(-75px)";
         sakuraAll.style.opacity = "0";
-        mainBtn.style.backgroundImage = "url(/image/student.png)";
+        mainBtn.style.backgroundImage = "url(image/student.png)";
         container.style.backgroundColor = "rgb(5, 171, 131)";
         greenAll.style.opacity = "1";
     } else {
@@ -90,7 +90,7 @@ mainBtn.addEventListener("click", function () {
         // 樱花下降-樱花显示
         sakuraAll.style.transform = "translateY(-25px)";
         sakuraAll.style.opacity = "1";
-        mainBtn.style.backgroundImage = "url(/image/Sakura.png)";
+        mainBtn.style.backgroundImage = "url(image/Sakura.png)";
         container.style.backgroundColor = "rgb(135, 120, 182)"
         greenAll.style.transform = "translateY(25px)";
         greenAll.style.opacity = "0";
