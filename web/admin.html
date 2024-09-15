@@ -126,11 +126,11 @@
         // 在页面加载时，自动设置 iframe 的 src 属性
         window.onload = function() {
             var timestamp = new Date().getTime();  // 获取当前时间戳
-            document.getElementById("webFrame").src = "http://localhost:8090/2.html?t=" + timestamp;
-            document.getElementById("heatmap").src = "http://localhost:8090/heatmap.html?t=" + timestamp;
-            document.getElementById("addpoint").src = "http://localhost:8090/3.html?t=" + timestamp;
-            document.getElementById("flmc").src = "http://localhost:8090/histogram.html?t=" + timestamp;
-            document.getElementById("cloud").src = "http://localhost:8090/cloud.html?t=" + timestamp;
+            document.getElementById("webFrame").src = "http://localhost:8080/2.html?t=" + timestamp;
+            document.getElementById("heatmap").src = "http://localhost:8080/heatmap.html?t=" + timestamp;
+            document.getElementById("addpoint").src = "http://localhost:8080/3.html?t=" + timestamp;
+            document.getElementById("flmc").src = "http://localhost:8080/histogram.html?t=" + timestamp;
+            document.getElementById("cloud").src = "http://localhost:8080/cloud.html?t=" + timestamp;
         };
 
 
